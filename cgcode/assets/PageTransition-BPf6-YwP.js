@@ -1,0 +1,1 @@
+import{n as e}from"./createLucideIcon-BEy43GPY.js";var t=e();function n({children:e}){return(0,t.jsx)(`div`,{className:`animate-page-enter flex-1 min-h-0 overflow-hidden`,children:e})}export{n as t};

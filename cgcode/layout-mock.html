@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Avalokana — Layout Mock</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+* { margin:0; padding:0; box-sizing:border-box; }
+
+:root {
+  --bg:       #F5F4F8;
+  --surface:  #FFFFFF;
+  --s2:       #F8F8FB;
+  --border:   rgba(0,0,0,0.07);
+  --action:   #768DFF;
+  --text:     #111827;
+  --muted:    #6B7280;
+  --light:    #9CA3AF;
+  --red:      #EF4444;
+  --green:    #22C55E;
+  --amber:    #F59E0B;
+  --font:     'Manrope', sans-serif;
+  --mono:     'JetBrains Mono', monospace;
+  --grad: linear-gradient(135deg,#FFF0E8 0%,#F0EDFB 48%,#E8F7F0 100%);
+}
+
+body { font-family:var(--font); background:var(--grad); height:100vh; overflow:hidden; display:flex; flex-direction:column; font-size:13px; color:var(--text); }
+
+/* ── TOPNAV ── */
+header {
+  height:52px; display:flex; align-items:center; padding:0 16px; gap:12px; shrink:0;
+  background:rgba(255,255,255,0.55); backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(255,255,255,0.4); flex-shrink:0; z-index:10; position:relative;
+}
+.logo { display:flex; align-items:center; gap:8px; flex-shrink:0; }
+.logo-img { width:34px; height:34px; border-radius:50%; background:#1a4fa0; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.logo-img img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
+.logo-text { display:flex; flex-direction:column; line-height:1.2; }
+.logo-text .brand { font-size:9px; font-weight:700; letter-spacing:0.18em; color:var(--muted); text-transform:uppercase; }
+.logo-text .org { font-size:12px; font-weight:600; color:var(--text); }
+.divider-v { width:1px; height:28px; background:rgba(0,0,0,0.08); flex-shrink:0; }
+
+/* module pill */
+.module-pill {
+  align-self:stretch; margin-top:6px; display:flex; align-items:center;
+  background:rgba(255,255,255,0.7); backdrop-filter:blur(8px);
+  border-radius:10px 10px 0 0; padding:0 6px;
+  border:1px solid rgba(255,255,255,0.6); border-bottom:none;
+  gap:4px; cursor:pointer;
+}
+.module-pill span { font-size:12px; font-weight:600; color:var(--muted); }
+.module-pill .dot-circle { width:10px; height:10px; border-radius:50%; border:1.5px solid var(--muted); flex-shrink:0; }
+
+.search-bar {
+  flex:1; max-width:340px; display:flex; align-items:center; gap:8px;
+  background:rgba(255,255,255,0.3); border:1.5px solid rgba(255,255,255,0.5);
+  border-radius:8px; padding:6px 12px;
+}
+.search-bar svg { opacity:0.4; flex-shrink:0; }
+.search-bar span { font-size:12px; color:var(--muted); }
+.flex1 { flex:1; }
+.weather { display:flex; flex-direction:column; gap:2px; flex-shrink:0; }
+.weather .temp-row { display:flex; align-items:center; gap:5px; font-size:12px; font-weight:600; color:var(--text); }
+.weather .cond { font-size:11px; color:var(--muted); }
+
+.datetime { display:flex; flex-direction:column; gap:2px; flex-shrink:0; }
+.datetime .row { display:flex; align-items:center; gap:5px; font-size:11px; color:var(--text); font-weight:500; }
+
+.export-btn {
+  display:flex; align-items:center; gap:6px; padding:6px 12px;
+  background:rgba(255,255,255,0.8); border:1px solid rgba(255,255,255,0.7);
+  border-radius:7px; font-size:11px; font-weight:600; color:var(--action);
+  cursor:pointer; flex-shrink:0;
+}
+
+.right-pill {
+  align-self:stretch; margin-top:6px; display:flex; align-items:center; gap:4px;
+  background:rgba(255,255,255,0.7); border-radius:12px 12px 0 0; padding:0 10px;
+  border:1px solid rgba(255,255,255,0.6); border-bottom:none; flex-shrink:0;
+}
+.bell { position:relative; cursor:pointer; }
+.bell-badge {
+  position:absolute; top:-5px; right:-6px; background:#EF4444; color:#fff;
+  font-size:9px; font-weight:800; border-radius:20px; padding:1px 4px; min-width:16px; text-align:center;
+}
+.profile { display:flex; flex-direction:column; align-items:flex-start; margin-left:8px; }
+.profile .name { font-size:12px; font-weight:700; color:var(--text); }
+.profile .role { font-size:10px; color:var(--muted); }
+.avatar { width:26px; height:26px; border-radius:8px; background:var(--action); display:flex; align-items:center; justify-content:center; color:#fff; font-size:11px; font-weight:700; }
+
+/* ── BODY ── */
+.body-row { display:flex; flex:1; min-height:0; }
+
+/* icon sidebar */
+.icon-sidebar {
+  width:52px; background:transparent; display:flex; flex-direction:column; align-items:center;
+  padding:8px 0; gap:2px; flex-shrink:0; border-right:1px solid rgba(255,255,255,0.3);
+}
+.si { width:36px; height:36px; border-radius:10px; display:flex; align-items:center; justify-content:center; cursor:pointer; transition:all 0.15s; }
+.si:hover { background:rgba(255,255,255,0.5); }
+.si.active { background:rgba(255,255,255,0.9); box-shadow:0 2px 8px rgba(0,0,0,0.08); }
+.si.active svg { color:var(--action) !important; }
+.si svg { color:var(--muted); }
+.si-spacer { flex:1; }
+
+/* left panel */
+.left-panel {
+  width:256px; flex-shrink:0; background:rgba(255,255,255,0.5); backdrop-filter:blur(8px);
+  border-right:1px solid rgba(255,255,255,0.4); display:flex; flex-direction:column; overflow:hidden;
+}
+.panel-header { padding:10px 12px 0; display:flex; align-items:center; justify-content:space-between; }
+.panel-title { font-size:14px; font-weight:700; color:var(--text); }
+.icon-btn { width:26px; height:26px; border-radius:7px; display:flex; align-items:center; justify-content:center; border:1px solid var(--border); background:rgba(255,255,255,0.6); cursor:pointer; }
+.tabs { display:flex; border-bottom:1px solid var(--border); margin-top:6px; padding:0 8px; }
+.tab { padding:8px 10px; font-size:12px; font-weight:600; color:var(--muted); cursor:pointer; border-bottom:2px solid transparent; display:flex; align-items:center; gap:5px; }
+.tab.active { color:var(--action); border-bottom-color:var(--action); }
+.count-badge { background:#EF4444; color:#fff; font-size:9px; font-weight:800; padding:1px 5px; border-radius:20px; }
+.section-label { padding:10px 12px 6px; font-size:9px; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--light); }
+.zone-list { flex:1; overflow-y:auto; }
+.zone-row { padding:8px 10px; cursor:pointer; border-radius:8px; margin:0 4px 2px; transition:all 0.12s; }
+.zone-row:hover { background:rgba(255,255,255,0.7); }
+.zone-top { display:flex; align-items:center; gap:7px; }
+.zone-dot { width:7px; height:7px; border-radius:50%; flex-shrink:0; }
+.zone-name { font-size:13px; font-weight:700; color:var(--text); flex:1; }
+.zone-pct { font-family:var(--mono); font-size:11px; font-weight:500; color:var(--muted); }
+.status-tag { font-size:9px; font-weight:700; padding:2px 5px; border-radius:4px; letter-spacing:0.05em; }
+.tag-red { background:#FEE2E2; color:#EF4444; }
+.tag-amber { background:#FEF3C7; color:#F59E0B; }
+.tag-green { background:#DCFCE7; color:#22C55E; }
+.zone-meta { padding-left:14px; margin-top:3px; font-size:11px; color:var(--muted); }
+.zone-meta2 { font-size:11px; color:var(--light); }
+
+/* map area */
+.map-area { flex:1; position:relative; overflow:hidden; }
+.map-bg {
+  position:absolute; inset:0;
+  background:
+    linear-gradient(rgba(200,210,200,0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,210,200,0.2) 1px, transparent 1px),
+    #E8EAE3;
+  background-size:40px 40px;
+}
+
+/* zone shapes on map */
+.zone-shape {
+  position:absolute; border-radius:40% 50% 45% 55% / 45% 40% 55% 50%;
+  border:1.5px solid #6B7280; opacity:0.7;
+}
+
+.map-controls {
+  position:absolute; top:8px; left:8px; right:8px; display:flex; align-items:center; gap:6px; z-index:2;
+}
+.ctrl-group {
+  display:flex; align-items:center; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px);
+  border-radius:8px; border:1px solid rgba(0,0,0,0.08); overflow:hidden; box-shadow:0 1px 4px rgba(0,0,0,0.06);
+}
+.ctrl-btn { padding:5px 10px; font-size:11px; font-weight:600; color:var(--muted); cursor:pointer; white-space:nowrap; }
+.ctrl-btn.active { background:var(--action); color:#fff; }
+.ctrl-btn + .ctrl-btn { border-left:1px solid rgba(0,0,0,0.06); }
+.ctrl-select { display:flex; align-items:center; gap:5px; padding:5px 10px; font-size:11px; font-weight:600; color:var(--text); cursor:pointer; background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-radius:8px; border:1px solid rgba(0,0,0,0.08); box-shadow:0 1px 4px rgba(0,0,0,0.06); white-space:nowrap; }
+.ctrl-spacer { flex:1; }
+.expand-btn { width:28px; height:28px; background:rgba(255,255,255,0.92); border:1px solid rgba(0,0,0,0.08); border-radius:7px; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 1px 4px rgba(0,0,0,0.06); }
+
+/* zone labels on map */
+.zone-label {
+  position:absolute; text-align:center; pointer-events:none;
+}
+.zone-label .zn { font-size:11px; font-weight:700; color:#374151; }
+.zone-label .zp { font-family:var(--mono); font-size:10px; color:#6B7280; margin-top:1px; }
+
+/* pins */
+.pin {
+  position:absolute; width:26px; height:26px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:800; color:#fff;
+  box-shadow:0 2px 6px rgba(0,0,0,0.25); transform:translate(-50%,-50%);
+}
+.pin-red { background:#EF4444; }
+.pin-green { background:#22C55E; }
+.pin-amber { background:#F59E0B; }
+.pin-large { width:34px; height:34px; font-size:13px; }
+
+/* legend */
+.legend {
+  position:absolute; bottom:56px; left:10px; background:rgba(255,255,255,0.96);
+  backdrop-filter:blur(8px); border:1px solid rgba(0,0,0,0.08); border-radius:10px;
+  padding:10px 12px; box-shadow:0 2px 10px rgba(0,0,0,0.1); z-index:2;
+}
+.legend-title { font-size:10px; font-weight:700; color:var(--muted); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:7px; display:flex; align-items:center; gap:5px; }
+.legend-title .filter-lnk { color:var(--action); font-size:9px; cursor:pointer; }
+.legend-item { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--text); font-weight:500; margin-top:5px; }
+.leg-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.leg-ring { width:10px; height:10px; border-radius:50%; border:2px solid; flex-shrink:0; background:transparent; }
+
+/* bottom stats bar */
+.stats-bar {
+  position:absolute; bottom:0; left:0; right:0; display:flex;
+  background:rgba(255,255,255,0.7); backdrop-filter:blur(10px);
+  border-top:1px solid rgba(255,255,255,0.5); z-index:2;
+}
+.stat-cell { flex:1; padding:7px 14px; border-right:1px solid rgba(0,0,0,0.06); }
+.stat-cell:last-child { border-right:none; }
+.stat-cell .s-label { font-size:10px; font-weight:600; color:var(--muted); text-transform:uppercase; letter-spacing:0.07em; }
+.stat-cell .s-val { display:flex; align-items:baseline; gap:5px; margin-top:2px; }
+.stat-cell .s-num { font-size:18px; font-weight:800; color:var(--text); font-family:var(--font); }
+.stat-cell .s-pct { font-size:11px; font-weight:700; }
+.s-bar { height:2px; border-radius:2px; margin-top:4px; background:#F3F4F6; }
+.s-bar-fill { height:100%; border-radius:2px; }
+
+/* ── AI PANEL ── */
+.ai-panel {
+  width:290px; flex-shrink:0; background:rgba(255,255,255,0.6); backdrop-filter:blur(12px);
+  border-left:1px solid rgba(255,255,255,0.5); display:flex; flex-direction:column; overflow:hidden;
+}
+.ai-header {
+  padding:10px 12px; display:flex; align-items:center; gap:8px;
+  border-bottom:1px solid var(--border); flex-shrink:0;
+}
+.ai-orb { width:32px; height:32px; border-radius:9px; background:var(--action); display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.ai-orb img { width:20px; height:20px; border-radius:3px; }
+.ai-title { font-size:14px; font-weight:700; color:var(--text); flex:1; }
+.ai-ctrl { display:flex; gap:4px; }
+.ai-ctrl-btn { width:22px; height:22px; border-radius:6px; display:flex; align-items:center; justify-content:center; background:rgba(0,0,0,0.04); cursor:pointer; }
+.ai-body { flex:1; padding:20px 14px 14px; display:flex; flex-direction:column; gap:14px; overflow-y:auto; }
+.ai-welcome { text-align:center; }
+.ai-welcome h2 { font-size:16px; font-weight:800; color:var(--text); }
+.ai-welcome p { font-size:12px; color:var(--muted); margin-top:5px; line-height:1.5; }
+.quick-actions { display:flex; flex-wrap:wrap; gap:6px; }
+.qa-btn {
+  padding:7px 10px; border-radius:8px; border:1px solid var(--border);
+  background:rgba(255,255,255,0.7); font-size:11px; font-weight:600; color:var(--text);
+  cursor:pointer; line-height:1.3; transition:all 0.12s;
+}
+.qa-btn:hover { background:rgba(118,141,255,0.07); border-color:rgba(118,141,255,0.3); color:var(--action); }
+.speak-btn {
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  padding:10px; border-radius:10px; border:1.5px solid rgba(239,68,68,0.2);
+  background:rgba(239,68,68,0.05); color:#EF4444; font-size:12px; font-weight:700;
+  cursor:pointer;
+}
+.ai-input-wrap {
+  display:flex; align-items:center; gap:8px; padding:8px 12px;
+  border-top:1px solid var(--border); flex-shrink:0;
+}
+.ai-input {
+  flex:1; background:rgba(0,0,0,0.03); border:1px solid rgba(0,0,0,0.07);
+  border-radius:8px; padding:7px 10px; font-size:12px; font-family:var(--font); color:var(--text);
+  outline:none;
+}
+.ai-input::placeholder { color:var(--light); }
+.ai-send { width:28px; height:28px; border-radius:7px; background:var(--action); display:flex; align-items:center; justify-content:center; flex-shrink:0; cursor:pointer; }
+.ai-footer { text-align:center; padding:5px 0 8px; font-size:10px; color:var(--light); display:flex; align-items:center; justify-content:center; gap:5px; }
+.ai-footer .cg-dot { width:14px; height:14px; border-radius:4px; background:var(--action); display:flex; align-items:center; justify-content:center; }
+
+/* svgs */
+svg { display:block; }
+</style>
+</head>
+<body>
+
+<!-- ── TOPNAV ── -->
+<header>
+  <div class="logo">
+    <div class="logo-img">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.3"/><path d="M12 2C8 2 4 6 4 12s4 10 8 10 8-4 8-10S16 2 12 2z" fill="white" fill-opacity="0.5"/></svg>
+    </div>
+    <div class="logo-text">
+      <span class="brand">Avalokana</span>
+      <span class="org">Nagpur Municipal Corporation</span>
+    </div>
+  </div>
+
+  <div class="divider-v"></div>
+
+  <div class="module-pill">
+    <div class="dot-circle"></div>
+    <span>Manholes</span>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+
+  <div class="search-bar">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <span>Search manhole, engineer, zone...</span>
+  </div>
+
+  <div class="flex1"></div>
+
+  <div class="weather">
+    <div class="temp-row">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F59E0B" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <span>34°C</span>
+    </div>
+    <span class="cond">Partly Sunny</span>
+  </div>
+
+  <div class="divider-v"></div>
+
+  <div class="datetime">
+    <div class="row">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      <span>Thu, 19 Mar 2026</span>
+    </div>
+    <div class="row">
+      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span style="font-family:var(--mono); font-size:11px;">08:02 pm</span>
+    </div>
+  </div>
+
+  <div class="export-btn">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#768DFF" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    Export
+  </div>
+
+  <div class="right-pill">
+    <div class="bell">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+      <div class="bell-badge">99+</div>
+    </div>
+    <div class="divider-v" style="margin:0 6px;"></div>
+    <div class="avatar">C</div>
+    <div class="profile">
+      <span class="name">Commissioner</span>
+      <span class="role">HQ Admin</span>
+    </div>
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2" style="margin-left:2px"><path d="m6 9 6 6 6-6"/></svg>
+  </div>
+</header>
+
+<!-- ── BODY ── -->
+<div class="body-row">
+
+  <!-- Icon Sidebar -->
+  <div class="icon-sidebar">
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m9 18 6-6-6-6"/></svg>
+    </div>
+    <div style="height:6px"></div>
+    <div class="si active">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z"/><path d="M13 5v2M13 17v2M13 11v2"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+    </div>
+    <div class="si-spacer"></div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+    </div>
+    <div class="si">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg>
+    </div>
+  </div>
+
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <div class="panel-header">
+      <span class="panel-title">City</span>
+      <div class="icon-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>
+      </div>
+    </div>
+    <div class="tabs">
+      <div class="tab active">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        City
+      </div>
+      <div class="tab">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        Alerts <span class="count-badge">50</span>
+      </div>
+    </div>
+    <div class="section-label">Zone Leaderboard</div>
+    <div class="zone-list">
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#EF4444"></div>
+          <span class="zone-name">Dharampeth</span>
+          <span class="status-tag tag-red">LOW</span>
+          <span class="zone-pct">0.1%</span>
+        </div>
+        <div class="zone-meta">Ashok Wankhede – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">5 wards · ~3,920 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#F59E0B"></div>
+          <span class="zone-name">Mangalwari</span>
+          <span class="status-tag tag-amber">LOW</span>
+          <span class="zone-pct">0.6%</span>
+        </div>
+        <div class="zone-meta">Ravi Meshram – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">6 wards · ~4,720 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#F59E0B"></div>
+          <span class="zone-name">Gandhibagh</span>
+          <span class="status-tag tag-amber">LOW</span>
+          <span class="zone-pct">1.3%</span>
+        </div>
+        <div class="zone-meta">Sanjay Khobragade – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">8 wards · ~6,280 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#A78BFA"></div>
+          <span class="zone-name">Satranjipura</span>
+          <span class="status-tag tag-amber">LOW</span>
+          <span class="zone-pct">1.5%</span>
+        </div>
+        <div class="zone-meta">Deepak Nagpure – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">6 wards · ~4,720 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#60A5FA"></div>
+          <span class="zone-name">Dhantoli</span>
+          <span class="status-tag tag-amber">LOW</span>
+          <span class="zone-pct">1.6%</span>
+        </div>
+        <div class="zone-meta">Manoj Gawande – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">6 wards · ~4,720 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#34D399"></div>
+          <span class="zone-name">Laxmi Nagar</span>
+          <span class="status-tag tag-amber">LOW</span>
+          <span class="zone-pct">3.1%</span>
+        </div>
+        <div class="zone-meta">Pradeep Borkar – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">7 wards · ~5,500 assets</div>
+      </div>
+
+      <div class="zone-row">
+        <div class="zone-top">
+          <div class="zone-dot" style="background:#22C55E"></div>
+          <span class="zone-name">Hanuman Nagar</span>
+          <span class="status-tag tag-green">GOOD</span>
+          <span class="zone-pct">18.4%</span>
+        </div>
+        <div class="zone-meta">Rajesh Patil – EE</div>
+        <div class="zone-meta2" style="padding-left:14px;font-size:11px;color:#9CA3AF">11 wards · ~8,630 assets</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Map -->
+  <div class="map-area">
+    <div class="map-bg"></div>
+
+    <!-- zone shapes (approximate) -->
+    <div class="zone-shape" style="left:8%;top:18%;width:22%;height:32%;background:rgba(239,68,68,0.08);border-color:#6B7280;"></div>
+    <div class="zone-shape" style="left:26%;top:8%;width:26%;height:28%;background:rgba(118,141,255,0.07);border-color:#6B7280;border-radius:45% 55% 40% 50%/50% 45% 55% 40%;"></div>
+    <div class="zone-shape" style="left:50%;top:10%;width:22%;height:25%;background:rgba(96,165,250,0.08);border-color:#6B7280;"></div>
+    <div class="zone-shape" style="left:68%;top:14%;width:20%;height:30%;background:rgba(245,158,11,0.07);border-color:#6B7280;border-radius:50% 40% 55% 45%;"></div>
+    <div class="zone-shape" style="left:32%;top:30%;width:28%;height:30%;background:rgba(34,197,94,0.08);border-color:#6B7280;border-radius:42% 52% 48% 44%;"></div>
+    <div class="zone-shape" style="left:52%;top:32%;width:20%;height:26%;background:rgba(52,211,153,0.07);border-color:#6B7280;"></div>
+    <div class="zone-shape" style="left:6%;top:48%;width:24%;height:30%;background:rgba(245,158,11,0.06);border-color:#6B7280;border-radius:48% 44% 52% 40%;"></div>
+    <div class="zone-shape" style="left:28%;top:55%;width:26%;height:28%;background:rgba(167,139,250,0.07);border-color:#6B7280;"></div>
+    <div class="zone-shape" style="left:52%;top:54%;width:22%;height:26%;background:rgba(239,68,68,0.07);border-color:#6B7280;border-radius:44% 50% 42% 54%;"></div>
+
+    <!-- zone labels -->
+    <div class="zone-label" style="left:13%;top:30%;"><div class="zn">Dharampeth</div><div class="zp">0.1%</div></div>
+    <div class="zone-label" style="left:34%;top:15%;"><div class="zn">Nehru Nagar</div><div class="zp">12.6%</div></div>
+    <div class="zone-label" style="left:54%;top:16%;"><div class="zn">Lakadganj</div><div class="zp">7.2%</div></div>
+    <div class="zone-label" style="left:70%;top:22%;"><div class="zn">Dhantoli</div><div class="zp">1.6%</div></div>
+    <div class="zone-label" style="left:74%;top:38%;"><div class="zn">Gandhibagh</div><div class="zp">1.3%</div></div>
+    <div class="zone-label" style="left:56%;top:40%;"><div class="zn">Laxmi Nagar</div><div class="zp">3.1%</div></div>
+    <div class="zone-label" style="left:39%;top:44%;"><div class="zn">Hanuman Nagar</div><div class="zp">18.4%</div></div>
+    <div class="zone-label" style="left:10%;top:60%;"><div class="zn">Mangalwari</div><div class="zp">0.6%</div></div>
+    <div class="zone-label" style="left:35%;top:66%;"><div class="zn">Ashi Nagar</div><div class="zp">2.3%</div></div>
+    <div class="zone-label" style="left:56%;top:64%;"><div class="zn">Satranjipura</div><div class="zp">1.5%</div></div>
+
+    <!-- pins -->
+    <div class="pin pin-red" style="left:42%;top:36%;">45</div>
+    <div class="pin pin-red pin-large" style="left:50%;top:48%;">38</div>
+    <div class="pin pin-red" style="left:57%;top:38%;">29</div>
+    <div class="pin pin-red" style="left:61%;top:43%;">30</div>
+    <div class="pin pin-amber" style="left:46%;top:32%;">6</div>
+    <div class="pin pin-green" style="left:52%;top:30%;">4</div>
+    <div class="pin pin-red" style="left:55%;top:28%;">3</div>
+    <div class="pin pin-amber" style="left:58%;top:25%;">25</div>
+    <div class="pin pin-red" style="left:63%;top:28%;">3</div>
+    <div class="pin pin-red" style="left:66%;top:33%;">16</div>
+    <div class="pin pin-amber" style="left:54%;top:44%;">2</div>
+    <div class="pin pin-red" style="left:43%;top:58%;">12</div>
+    <div class="pin pin-amber" style="left:34%;top:54%;">9</div>
+    <div class="pin pin-red" style="left:57%;top:54%;">15</div>
+    <div class="pin pin-red" style="left:64%;top:54%;">10</div>
+    <div class="pin pin-red" style="left:36%;top:30%;">20</div>
+
+    <!-- controls -->
+    <div class="map-controls">
+      <div class="ctrl-group">
+        <div class="ctrl-btn">Off</div>
+        <div class="ctrl-btn active">Zones</div>
+        <div class="ctrl-btn">Wards</div>
+      </div>
+      <div class="ctrl-group">
+        <div class="ctrl-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:4px;vertical-align:-2px"><path d="M3 6h18M7 12h10M11 18h2"/></svg>
+        </div>
+        <div class="ctrl-btn active">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:4px;vertical-align:-2px"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>
+          Street
+        </div>
+        <div class="ctrl-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display:inline-block;margin-right:4px;vertical-align:-2px"><circle cx="12" cy="12" r="10"/></svg>
+          Satellite
+        </div>
+      </div>
+      <div class="ctrl-select">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        Layer: <strong>None</strong>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="ctrl-select">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Status: <strong>Maintenance</strong>
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2.5"><path d="m6 9 6 6 6-6"/></svg>
+      </div>
+      <div class="ctrl-spacer"></div>
+      <div class="expand-btn">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+      </div>
+    </div>
+
+    <!-- legend -->
+    <div class="legend">
+      <div class="legend-title">Manhole Pins <span class="filter-lnk">click to filter</span></div>
+      <div class="legend-item"><div class="leg-ring" style="border-color:#22C55E;background:rgba(34,197,94,0.15)"></div> Maintained</div>
+      <div class="legend-item"><div class="leg-ring" style="border-color:#EF4444;background:rgba(239,68,68,0.15)"></div> Unmaintained</div>
+      <div class="legend-item"><div class="leg-ring" style="border-color:#F59E0B;background:rgba(239,68,68,0.15)"></div> Escalated · L1</div>
+      <div class="legend-item"><div class="leg-ring" style="border-color:#F97316;background:rgba(239,68,68,0.15)"></div> Escalated · L2</div>
+      <div class="legend-item"><div class="leg-ring" style="border-color:#991B1B;background:rgba(239,68,68,0.2)"></div> Escalated · L3</div>
+    </div>
+
+    <!-- bottom stats bar -->
+    <div class="stats-bar">
+      <div class="stat-cell">
+        <div class="s-label">Manholes</div>
+        <div class="s-val"><span class="s-num">85,751</span></div>
+        <div class="s-bar"><div class="s-bar-fill" style="width:100%;background:#768DFF"></div></div>
+      </div>
+      <div class="stat-cell">
+        <div class="s-label">Unmaintained</div>
+        <div class="s-val"><span class="s-num">71,417</span><span class="s-pct" style="color:#EF4444">83.1%</span></div>
+        <div class="s-bar"><div class="s-bar-fill" style="width:83%;background:#EF4444"></div></div>
+      </div>
+      <div class="stat-cell">
+        <div class="s-label">Escalated</div>
+        <div class="s-val"><span class="s-num">3,426</span><span class="s-pct" style="color:#F59E0B">4.4%</span></div>
+        <div class="s-bar"><div class="s-bar-fill" style="width:4%;background:#F59E0B"></div></div>
+      </div>
+      <div class="stat-cell">
+        <div class="s-label">SLA Breached</div>
+        <div class="s-val"><span class="s-num">274</span><span class="s-pct" style="color:#EF4444">3.2%</span></div>
+        <div class="s-bar"><div class="s-bar-fill" style="width:3%;background:#EF4444"></div></div>
+      </div>
+      <div class="stat-cell">
+        <div class="s-label">Resolved</div>
+        <div class="s-val"><span class="s-num">14,331</span><span class="s-pct" style="color:#22C55E">16.7%</span></div>
+        <div class="s-bar"><div class="s-bar-fill" style="width:17%;background:#22C55E"></div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI Panel -->
+  <div class="ai-panel">
+    <div class="ai-header">
+      <div class="ai-orb">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+      </div>
+      <span class="ai-title">Ask Chitragupta</span>
+      <div class="ai-ctrl">
+        <div class="ai-ctrl-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+        </div>
+        <div class="ai-ctrl-btn">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#9CA3AF" stroke-width="2"><path d="m11 17-5-5 5-5M18 17l-5-5 5-5"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="ai-body">
+      <div class="ai-welcome">
+        <h2>What can I help with?</h2>
+        <p>Ask about zones, tickets, SLA compliance,<br>or navigate via voice command</p>
+      </div>
+
+      <div class="quick-actions">
+        <div class="qa-btn">Summarise today's escalations</div>
+        <div class="qa-btn">Show SLA breach tickets</div>
+        <div class="qa-btn">Open Analytics</div>
+        <div class="qa-btn">Search for tickets</div>
+      </div>
+
+      <div class="speak-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#EF4444" stroke-width="2"><path d="M12 2a3 3 0 0 1 3 3v7a3 3 0 0 1-6 0V5a3 3 0 0 1 3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v3M8 22h8"/></svg>
+        Tap to Speak
+      </div>
+    </div>
+
+    <div class="ai-input-wrap">
+      <input class="ai-input" type="text" placeholder="Ask or command Chitragupta…" />
+      <div class="ai-send">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+      </div>
+    </div>
+
+    <div class="ai-footer">
+      Powered by
+      <div class="cg-dot">
+        <svg width="9" height="9" viewBox="0 0 24 24" fill="white"><circle cx="12" cy="12" r="5"/></svg>
+      </div>
+      Chitragupta
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

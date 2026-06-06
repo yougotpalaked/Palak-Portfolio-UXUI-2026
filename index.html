@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Palak Agrawal | UX/UI Designer</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap">
+  <link rel="stylesheet" href="css/palak-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a class="topnav-logo" href="index.html">Palak Agrawal</a>
+    <ul class="topnav-pills">
+      <li><a href="index.html" class="active">Dashboard</a></li>
+      <li><a href="works.html">Projects</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="topnav-right">
+      <a href="resume/Palak-Resume-UXUI.pdf" target="_blank" title="Resume"><i class="fas fa-file-alt"></i></a>
+      <a href="https://www.linkedin.com/in/palak-agrawal-aaa227206/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </nav>
+
+  <main class="bento">
+
+    <!-- HELLO CARD -->
+    <div class="card card-hello">
+      <h1>Hello<br><em id="hello-name">Stranger</em></h1>
+      <p class="subtitle">I'm always looking around for problems to solve - and I found a home in design. AI-first by practice, not just by trend.</p>
+      <div class="code-block">
+        let designer = palak.current();<br>
+        &gt; The terminal is open.<br>
+        Type nothing. Just explore._
+      </div>
+    </div>
+
+    <!-- DESIGN HOURS CARD -->
+    <div class="card card-stats">
+      <div class="card-label"><i class="fas fa-clock"></i>&nbsp; Design Hours</div>
+
+      <div class="gauge-wrap">
+        <svg viewBox="0 0 160 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M8 85 A72 72 0 0 1 152 85" stroke="#222" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <path d="M8 85 A72 72 0 0 1 95 15" stroke="url(#g1)" stroke-width="9" stroke-linecap="round" fill="none"/>
+          <circle cx="95" cy="15" r="6" fill="white"/>
+          <defs>
+            <linearGradient id="g1" x1="8" y1="85" x2="95" y2="15" gradientUnits="userSpaceOnUse">
+              <stop offset="0%" stop-color="#4ade80"/>
+              <stop offset="100%" stop-color="#a78bfa"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="stat-num" id="hourCount">0</div>
+        <div class="stat-unit">Hours</div>
+      </div>
+
+      <div class="stats-footer">
+        <span>INDIA<br><span style="font-size:9px;color:#3a3a3a;">24.0°N 78.0°E</span></span>
+        <span style="text-align:right">DESIGN<br>2020-2026</span>
+      </div>
+    </div>
+
+    <!-- SKILL MATRIX CARD -->
+    <div class="card card-skills">
+      <div class="card-label" style="margin-bottom:10px;"><i class="fas fa-chart-bar"></i>&nbsp; Skill Matrix</div>
+      <div class="skills-body">
+        <div class="skills-left">
+          <div class="skill-row"><span class="skill-name">UX Research</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">UI Design</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">Interaction Design</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">Prototyping</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">User Testing</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">Visual Design</span><span class="skill-badge">●</span></div>
+          <div class="skill-row"><span class="skill-name">AI-Assisted Design</span><span class="skill-badge" style="color:#6ee7a0;">●</span></div>
+          <div class="skills-bars">
+            <div style="background:#4ade80"></div>
+            <div style="background:#22d3ee"></div>
+            <div style="background:#818cf8"></div>
+            <div style="background:#f472b6"></div>
+            <div style="background:#fb923c"></div>
+            <div style="background:#facc15"></div>
+            <div style="background:#34d399"></div>
+            <div style="background:#c084fc"></div>
+          </div>
+          <div class="skills-note">// self-assessed · always iterating</div>
+        </div>
+        <div class="skills-tools-col">
+          <div class="card-label" style="justify-content:flex-end; margin-bottom:4px;">TOOL</div>
+          Figma<br>Adobe CC<br>Framer<br>HTML / CSS<br>Miro<br><span style="color:#6ee7a0;font-weight:600;">Claude<br>Gemini</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECTS MINI GRID CARD -->
+    <div class="card card-projects">
+      <div class="projects-head">
+        <div class="card-label"><i class="fas fa-th"></i>&nbsp; Suggested For You</div>
+        <a href="works.html" class="btn-pill">View All →</a>
+      </div>
+      <div class="mini-grid">
+        <a href="zap-business-portal.html" class="mini-card">
+          <img src="ZAPB/Avalokan_cover.png" alt="ZAP Business Portal">
+          <div class="mini-card-body">
+            <div class="mini-tag">Dashboard · Civic Tech</div>
+            <div class="mini-name">Avalokana Civic Dashboard</div>
+          </div>
+        </a>
+        <a href="chitragupta/" target="_blank" class="mini-card">
+          <img src="zap/Cg wesbite cover.png" alt="ZAP App">
+          <div class="mini-card-body">
+            <div class="mini-tag">Branding · Web</div>
+            <div class="mini-name">Chitragupta Brand Website</div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- ABOUT / CONTACT CARD -->
+    <div class="card card-about">
+      <div>
+        <div class="card-label" style="margin-bottom:14px;"><i class="fas fa-seedling"></i>&nbsp; About Me</div>
+        <div class="about-quote">"and in the middle of it all,<br>I found design."</div>
+        <div class="about-byline">Palak Agrawal, UX/UI Designer</div>
+        <p class="about-bio">
+          Problem-solver at heart. From charcoal portraits to interaction design - I don't just make things look good, I make them <em style="color:#ccc;">mean something</em>. I build AI-first, using Claude and Gemini to cut build time and ship faster without cutting corners.
+        </p>
+      </div>
+      <div>
+        <div class="contact-section">
+          <div class="contact-label" id="contact-label">Get in touch</div>
+          <a href="mailto:palakagrawal3623@gmail.com">palakagrawal3623@gmail.com</a>
+          <a href="tel:+919050506545">+91 9050506545</a>
+        </div>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/palak-agrawal-aaa227206/" target="_blank"><i class="fab fa-linkedin"></i></a>
+          <a href="resume/Palak-Resume-UXUI.pdf" target="_blank"><i class="fas fa-file-pdf"></i></a>
+          <a href="mailto:palakagrawal3623@gmail.com"><i class="fas fa-envelope"></i></a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+
+  <script>
+    function countUp(el, target, duration) {
+      let start = 0;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        start = Math.min(start + step, target);
+        el.textContent = Math.floor(start).toLocaleString();
+        if (start >= target) clearInterval(timer);
+      }, 16);
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      countUp(document.getElementById('hourCount'), 1500, 2000);
+    });
+  </script>
+
+</body>
+</html>

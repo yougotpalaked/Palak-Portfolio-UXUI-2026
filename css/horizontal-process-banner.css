@@ -1,0 +1,311 @@
+/* 
+ * horizontal-process-banner.css
+ * Horizontal edge-to-edge banner implementation for Process-led Projects section
+ * This file contains styles for horizontal banners with hover functionality
+ */
+
+/* Process Banner Container */
+.process-banner-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Individual Process Banner */
+.process-banner {
+    width: 100%;
+    min-height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 3rem;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 0;
+    background: linear-gradient(to right, rgba(240, 240, 240, 0.5), rgba(220, 220, 220, 0.8));
+}
+
+body.dark-mode .process-banner {
+    background: linear-gradient(to right, rgba(40, 40, 40, 0.5), rgba(30, 30, 30, 0.8));
+}
+
+/* Alternate banner colors */
+.process-banner:nth-child(odd) {
+    background: linear-gradient(to right, rgba(230, 230, 230, 0.5), rgba(210, 210, 210, 0.8));
+}
+
+body.dark-mode .process-banner:nth-child(odd) {
+    background: linear-gradient(to right, rgba(35, 35, 35, 0.5), rgba(25, 25, 25, 0.8));
+}
+
+/* Banner hover effect */
+.process-banner:hover {
+    background: linear-gradient(to right, rgba(220, 220, 220, 0.8), rgba(200, 200, 200, 1));
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .process-banner:hover {
+    background: linear-gradient(to right, rgba(45, 45, 45, 0.8), rgba(35, 35, 35, 1));
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Banner Content Layout */
+.banner-content {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.5rem;
+    padding-left: 1rem;
+}
+
+/* Process Number and Title */
+.process-title {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 20%;
+}
+
+.process-number {
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    opacity: 0.5;
+    font-family: var(--font-heading);
+}
+
+body.dark-mode .process-number {
+    color: var(--dark-primary);
+}
+
+.process-name {
+    font-size: 3rem;
+    font-weight: 400;
+    color: var(--primary-color);
+    font-family: var(--font-heading);
+}
+
+body.dark-mode .process-name {
+    color: var(--dark-primary);
+}
+
+/* Process Description */
+.process-description {
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+    line-height: 1.5;
+    margin-left: 8rem; /* Align with the process name */
+    max-width: 20%;
+}
+
+body.dark-mode .process-description {
+    color: var(--dark-medium-gray);
+}
+
+/* Project Card Container - Hidden by default, shown on hover */
+
+.project-card-container {
+    background-color: var(--card-bg-color, #ffffff);
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    padding: 2px;
+    position: fixed;
+    z-index: 1000;
+    width: 350px;
+    height: 10px;
+    opacity: 0;
+    visibility: visible;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+    
+}
+
+body.dark-mode .project-card-container {
+    background-color: rgba(30, 30, 30, 0.98);
+    background-image: linear-gradient(rgba(80, 80, 80, 0.1) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(80, 80, 80, 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: -1px -1px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Project card visibility is now controlled by JavaScript */
+.project-card-container:hover {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Project Card Styling */
+.project-card {
+    width: 100%;
+    height: 200px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: visible;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .project-card {
+    background: var(--dark-card-bg);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Banner Image */
+.project-banner {
+    display: visible;
+    width: 100%;
+    
+    
+}
+
+.project-banner img.project-image {
+    display: visible;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+
+
+
+
+.project-info {
+    padding: 1px 0;
+}
+
+
+.project-info p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text-secondary-color, #666);
+}
+
+.project-info h4 {
+    font-size: 1rem;
+    color: var(--primary-color);
+    font-weight: 400;
+    margin: 0;
+}
+
+body.dark-mode .project-info h4 {
+    color: var(--dark-primary);
+}
+
+.project-info p {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin: 0;
+    line-height: 1.5;
+}
+
+body.dark-mode .project-info p {
+    color: var(--dark-medium-gray);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .process-banner {
+        padding: 1.5rem 2rem;
+    }
+    
+    .banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .process-title {
+        flex: 0 0 100%;
+    }
+    
+    .process-description {
+        flex: 0 0 100%;
+        margin-left: 0;
+    }
+    
+    .project-card {
+        width: 600px;
+    }
+
+@media (max-width: 768px) {
+    .process-banner {
+        padding: 1.2rem 1.5rem;
+    }
+    
+    .process-number {
+        font-size: 2rem;
+    }
+    
+    .process-name {
+        font-size: 1.5rem;
+    }
+    
+    .process-description {
+        font-size: 1rem;
+        margin-left: 0;
+    }
+    
+    .project-card {
+        width: 90%;
+    }
+    
+    .project-banner {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .process-banner {
+        padding: 1rem;
+    }
+    
+    .process-title {
+        gap: 0.5rem;
+    }
+    
+    .process-number {
+        font-size: 1.8rem;
+    }
+    
+    .process-name {
+        font-size: 1.3rem;
+    }
+    
+    .process-description {
+        font-size: 0.9rem;
+        margin-left: 0;
+    }
+    
+    .project-banner {
+        height: 200px;
+    }
+    
+    .project-info {
+        padding: 1rem;
+    }
+    
+    .project-info h4 {
+        font-size: 1.2rem;
+    }
+    
+    .project-info p {
+        font-size: 0.9rem;
+    }
+}
+}

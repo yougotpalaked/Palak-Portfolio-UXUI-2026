@@ -1,0 +1,262 @@
+/* 
+ * animations.css
+ * Enhanced animations for Palak Agrawal's Portfolio
+ * This file contains 3D effects, parallax scrolling, and interactive animations
+ */
+
+:root {
+    --primary-color-rgb: 159, 155, 155;
+    --dark-primary-rgb: 186, 186, 186;
+}
+
+/* 3D Card Flip Effect */
+.project-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.project-card .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.project-card:hover .card-inner {
+    transform: rotateY(180deg);
+}
+
+.project-card .card-front,
+.project-card .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.project-card .card-front {
+    background-color: var(--card-bg);
+}
+
+body.dark-mode .project-card .card-front {
+    background-color: var(--dark-card-bg);
+}
+
+.project-card .card-back {
+    background-color: var(--primary-color);
+    color: white;
+    transform: rotateY(180deg);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+body.dark-mode .project-card .card-back {
+    background-color: var(--dark-primary);
+}
+
+.project-card .card-back h4 {
+    margin-bottom: 0.5rem;
+    font-size: 1.2rem;
+}
+
+.project-card .card-back p {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.project-card .card-back .btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .project-card .card-back .btn {
+    color: var(--dark-primary);
+}
+
+.project-card .card-back .btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Enhanced Timeline Animations */
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    top: 30px;
+    transition: width 0.6s ease-in-out;
+    z-index: 5;
+}
+
+body.dark-mode .timeline-item::after {
+    background-color: var(--dark-primary);
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: 50%;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: 50%;
+}
+
+.timeline-item.visible::after {
+    width: calc(5% + 10px);
+}
+
+/* Cursor-following highlight effect */
+.project-card .highlight {
+    position: absolute;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    mix-blend-mode: overlay;
+    z-index: 10;
+}
+
+body.dark-mode .project-card .highlight {
+    background: radial-gradient(circle, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 70%);
+}
+
+/* Enhanced Floating Animation */
+@keyframes enhancedFloat {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+    25% {
+        transform: translateY(-10px) rotate(1deg);
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.15);
+    }
+    50% {
+        transform: translateY(-5px) rotate(-1deg);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+    }
+    75% {
+        transform: translateY(-8px) rotate(0.5deg);
+        box-shadow: 0 12px 22px rgba(0, 0, 0, 0.14);
+    }
+    100% {
+        transform: translateY(0) rotate(0deg);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* 3D Tilt Effect */
+.tilt-effect {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+    transition: transform 0.1s ease-out;
+}
+
+/* Pulse Animation for Timeline Items */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb), 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(var(--primary-color-rgb), 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(var(--primary-color-rgb), 0);
+    }
+}
+
+.timeline-item.visible::before {
+    animation: pulseGlow 2s infinite;
+}
+
+/* Staggered Reveal Animation */
+@keyframes staggerFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interactive Timeline Transition */
+.timeline-content .process-stage {
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-content .process-stage::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--primary-color);
+    transition: width 0.6s ease-in-out;
+}
+
+body.dark-mode .timeline-content .process-stage::after {
+    background-color: var(--dark-primary);
+}
+
+.timeline-content:hover .process-stage::after {
+    width: 100%;
+}
+
+/* Project Card Hover State Enhancement */
+.project-card:hover {
+    transform: translateY(-8px) scale(1.02) rotateX(5deg);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .project-card:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Parallax Scrolling Effect */
+.parallax-container {
+    overflow: hidden;
+    position: relative;
+}
+
+.parallax-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.1s ease-out;
+}
+
+.parallax-layer-1 {
+    transform: translateZ(-100px) scale(1.15);
+}
+
+.parallax-layer-2 {
+    transform: translateZ(-50px) scale(1.1);
+}
+
+.parallax-layer-3 {
+    transform: translateZ(0);
+}

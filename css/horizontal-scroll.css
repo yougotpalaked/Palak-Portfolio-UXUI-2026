@@ -1,0 +1,210 @@
+/* 
+ * horizontal-scroll.css
+ * Horizontal scrolling implementation for Palak Agrawal's Portfolio
+ * This file contains styles for horizontal scrolling project cards with maintained image banners
+ */
+
+/* Grid Layout Container (replacing horizontal scroll) */
+.works-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem; /* Slightly reduced gap to allow for wider cards */
+    column-gap: 0.1rem;
+    padding: 2rem;
+    margin: 0 auto;
+    max-width: 1600px; /* Increased max-width to accommodate wider cards */
+}
+
+/* Responsive grid layout */
+@media (max-width: 768px) {
+    .works-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 1rem;
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+/* Project Card Styling for Grid Layout */
+.project-bar {
+    width: 600px; /* Increased width from 500px to 600px */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--card-bg);
+    border-radius: 4px; /* Reduced corner radius to 4px for a more modern look */
+    box-shadow: 0px 5px 15px rgba(63, 63, 63, 0.05);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    position: relative; /* Ensure proper positioning for absolute elements */
+    cursor: pointer; /* Add pointer cursor to indicate clickability */
+    margin: 0 auto; /* Center the cards in their grid cells */
+}
+
+.project-bar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Maintain the project banner/image */
+.project-banner {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .project-banner {
+    background-color: var(--dark-light-gray);
+}
+
+.project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Project link styling - makes entire card clickable */
+.project-bar .project-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Ensure it's a block element */
+    opacity: 0; /* Make it invisible but clickable */
+}
+
+.project-bar:hover .project-image {
+    transform: scale(1.05);
+}
+
+/* Project Info Section */
+.project-info {
+    padding: 0.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center; /* Center align text */
+    width: 90%; /* Further reduce width of project info */
+    margin: 0 auto; /* Center the project info div */
+}
+
+.project-info h3 {
+    margin-bottom: 0.1rem;
+    color: var(--primary-color);
+}
+
+body.dark-mode .project-info h3 {
+    color: var(--dark-primary);
+}
+
+.project-info p {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+    flex-grow: 1;
+}
+
+body.dark-mode .project-info p {
+    color: var(--dark-text);
+}
+
+/* Hide the button since the entire card is clickable */
+.project-info .btn {
+    display: none; /* Hide the button */
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    gap: 0.5rem;
+}
+
+.scroll-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: var(--light-gray);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.scroll-dot.active {
+    background-color: var(--primary-color);
+    transform: scale(1.2);
+}
+
+body.dark-mode .scroll-dot {
+    background-color: var(--dark-light-gray);
+}
+
+body.dark-mode .scroll-dot.active {
+    background-color: var(--dark-primary);
+}
+
+/* Scroll Arrows */
+.scroll-arrows {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    margin-top: -2rem;
+    padding: 0 1rem;
+    pointer-events: none;
+}
+
+.scroll-arrow {
+    width: 40px;
+    height: 40px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    opacity: 0.8;
+}
+
+.scroll-arrow:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+body.dark-mode .scroll-arrow {
+    background-color: var(--dark-primary);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+    .project-bar {
+        width: 100%; /* Make cards full width of their container */
+        max-width: 350px; /* Set a maximum width to prevent stretching */
+        margin: 0 auto; /* Center the cards */
+    }
+    
+    .project-banner {
+        height: 180px;
+        width: 100%;
+    }
+    
+    .project-info {
+        padding: 1rem;
+        width: 90%; /* Slightly wider for better text display */
+        margin: 0 auto; /* Ensure it's centered */
+    }
+    
+    .scroll-arrow {
+        width: 35px;
+        height: 35px;
+    }
+}

@@ -1,0 +1,614 @@
+/* 
+ * process-timeline.css
+ * Vertical and diagonal scrolling implementation for Process-led Projects section
+ * This file contains styles for vertical/diagonal scrolling process timeline with zigzag layout
+ */
+
+/* Section Description */
+.section-description {
+    text-align: center;
+    color: var(--dark-card-bg);
+    margin-bottom: -5rem;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .section-description {
+    color: var(--primary-color);
+}
+
+/* Process Timeline Specific Styles */
+.process-timeline {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem; /* Increased gap between cards for better spacing */
+    overflow-x: hidden;
+    overflow-y: auto;
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.process-led{
+    background-color: rgb(246, 246, 246);
+}
+
+body.dark-mode .process-led{
+    background-color: rgb(30, 29, 29);
+}
+/* Process Timeline Connection Line - Center vertical line */
+.process-timeline::before {
+    
+    content: '_____________';
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    height: 45%;
+    background-color: var(--primary-color);
+    opacity: 0.2;
+    z-index: 0;
+    transform: translateX(-50%);
+     /* <-- this flips it horizontally */
+}
+/* Special class for flipped ones */
+.process-timeline.flipped::before {
+    transform: translateX(-50%) scaleX(-1); /* flipped */
+}
+
+body.dark-mode .process-timeline::before {
+    background-color: var(--dark-primary);
+}
+
+/* Process Timeline Project Cards - Base Styles */
+.process-timeline .project-bar {
+    width: 700px; /* Increased width for better visibility */
+    max-width: 95%;
+    background: var(--card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+    box-shadow: 10px 30px 25px rgba(0, 0, 0, 0.1); /* Enhanced shadow */
+    position: relative;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    margin-top: 0;
+    z-index: 1;
+    cursor: pointer; /* Add pointer cursor to indicate clickability */
+}
+
+/* Subtle hover animation for project cards */
+.process-timeline .project-bar:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+body.dark-mode .process-timeline .project-bar:hover {
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-mode .process-timeline .project-bar {
+    background: var(--dark-card-bg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Left-positioned cards (odd) */
+.process-timeline .project-bar:nth-child(odd) {
+    margin-right: auto;
+    margin-left: 0;
+    transform: translateX(0); /* Reset transform */
+    align-self: flex-start; /* Align to the left */
+    position: relative;
+    left: 0;
+    width: 600px; /* Increased width for better visibility */
+    max-width: 50%; /* Increased max-width to accommodate wider cards */
+}
+
+/* Right-positioned cards (even) */
+.process-timeline .project-bar:nth-child(even) {
+    margin-left: auto;
+    margin-right: 0;
+    transform: translateX(0); /* Reset transform */
+    align-self: flex-end; /* Align to the right */
+    position: relative;
+    right: 0;
+    width: 600px; /* Increased width for better visibility */
+    max-width: 50%; /* Increased max-width to accommodate wider cards */
+}
+
+/* Explicitly right-aligned cards */
+.process-timeline .project-bar.align-right {
+    margin-left: auto;
+    margin-right: 0;
+    transform: translateX(0);
+    align-self: flex-end; /* Align to the right */
+    position: relative;
+    right: 0;
+    width: 700px;
+    max-width: 45%;
+}
+
+/* Hover effects for cards */
+.process-timeline .project-bar:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    transform: translateY(-8px);
+    z-index: 2;
+}
+
+body.dark-mode .process-timeline .project-bar:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+}
+
+/* Process Stage Header */
+.process-stage {
+    padding: 1rem 2rem;
+    color: var(--dark-gray);
+    width: 500px;
+    height: 200px;
+    display: block;
+    z-index: 5;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    text-align: center;
+    position: relative;
+    margin-bottom: 2rem;
+    margin-top: -9rem;
+    max-width: 800px;
+    background-color: rgba(var(--primary-color-rgb), 0.05);
+    border-radius: 8px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.05);
+    align-self: center; /* Center align by default */
+
+}
+
+/* Alternate positioning for process stages - centered with slight offset */
+
+
+ .process-stage.align-left {
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(-62%); /* Slight offset to the right */
+    align-self: center; /* Center align with offset */
+    position: relative;
+    max-width: 50%;
+    top: 230px;
+}
+
+
+.process-stage.align-right {
+    margin-left: auto;
+    margin-right: auto;
+    transform: translateX(62%); /* Slight offset to the right */
+    align-self: center; /* Center align with offset */
+    position: relative;
+    max-width: 50%;
+    top: 230px;
+}
+
+
+body.dark-mode .process-stage {
+    background-color: rgba(43, 42, 42, 0.544);
+    color: var(--dark-medium-gray);
+    box-shadow: 0 4px 10px rgba(25, 25, 25, 0.1);
+}
+
+.process-stage h3 {
+    font-size: 1.6rem;
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 400;
+    transition: color 0.3s ease;
+    padding: 0.2rem 0;;
+}
+
+body.dark-mode .process-stage h3 {
+    color: var(--dark-primary);
+}
+
+/* Connectors for zigzag effect */
+.process-timeline .project-bar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 100px; /* Longer connectors for better visibility */
+    height: 3px;
+    background-color: var(--primary-color);
+    opacity: 0.4;
+    z-index: 1;
+    transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+/* Left connector for odd cards */
+.process-timeline .project-bar:nth-child(odd)::before {
+    right: -100px;
+    transform: translateY(-50%);
+}
+
+/* Right connector for even cards */
+.process-timeline .project-bar:nth-child(even)::before {
+    left: -100px;
+    transform: translateY(-50%);
+}
+
+/* Hover effect for connectors */
+.process-timeline .project-bar:hover::before {
+    opacity: 0.0;
+    width: 120px; /* Extend on hover */
+}
+
+/* Project link styling - makes entire card clickable */
+.process-timeline .project-bar {
+    position: relative;
+}
+
+.process-timeline .project-bar .project-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    cursor: pointer;
+    text-decoration: none; /* Remove underline from links */
+    display: block; /* Ensure it's a block element */
+    opacity: 0; /* Make it invisible but clickable */
+}
+
+body.dark-mode .process-timeline .project-bar::before {
+    background-color: var(--dark-primary);
+}
+
+/* Project Banner and Image Styles */
+.process-timeline .project-banner {
+    width: 100%;
+    height: 350px;
+    overflow: hidden;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.process-timeline .project-banner .project-image-hover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+.process-timeline .project-bar:hover .project-image-hover {
+    opacity: 1;
+}
+
+.process-timeline .project-bar:hover .project-image {
+    opacity: 0;
+    transition: opacity 0.6s ease-in-out;
+}
+
+/* Class to disable hover image effect on specific cards */
+.process-timeline .project-bar.no-hover-effect:hover .project-image-hover {
+    opacity: 0;
+}
+
+.process-timeline .project-bar.no-hover-effect:hover .project-image {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.process-timeline .project-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.5s ease, opacity 0.6s ease-in-out;
+    filter: brightness(0.95);
+}
+
+.process-timeline .project-bar:hover .project-image {
+    transform: scale(1.05);
+    filter: brightness(1.05);
+}
+
+/* Project Info Styles */
+.process-timeline .project-info {
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background-color: var(--card-bg);
+    transition: background-color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-mode .process-timeline .project-info {
+    background-color: var(--dark-card-bg);
+}
+
+.process-timeline .text-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.process-timeline .project-info h4 {
+    font-size: 0rem;
+    margin: 0;
+    color: var(--primary-color);
+    font-weight: 400;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .process-timeline .project-info h4 {
+    color: var(--dark-primary);
+}
+
+.process-timeline .project-info p {
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+    margin: 0;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    line-height: 1.5;
+    display: inline-block;
+}
+
+body.dark-mode .process-timeline .project-info p {
+    color: var(--primary-color);
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    .process-timeline .project-bar {
+        width: 500px;
+    }
+    
+    .process-stage {
+        width: 450px;
+    }
+    
+    /* Maintain zigzag layout at this breakpoint */
+    .process-timeline:nth-of-type(odd) + .process-stage,
+    .process-stage:nth-of-type(odd) {
+        margin-left: 0;
+        margin-right: auto;
+    }
+    
+    .process-timeline:nth-of-type(even) + .process-stage,
+    .process-stage:nth-of-type(even) {
+        margin-left: auto;
+        margin-right: 0;
+    }
+}
+
+@media (min-width: 1201px) and (max-width: 1600px) {
+    .process-stage {
+        width: 500px;
+    }
+}
+
+@media (min-width: 1601px) {
+    .process-stage {
+        width: 500px;
+    }
+}
+
+@media (max-width: 992px) {
+    .process-timeline .project-bar {
+        width: 450px;
+    }
+    
+    .process-timeline .project-bar::before {
+        width: 60px;
+    }
+    
+    .process-timeline .project-bar:nth-child(odd)::before {
+        right: -60px;
+    }
+    
+    .process-timeline .project-bar:nth-child(even)::before {
+        left: -60px;
+    }
+}
+
+@media (max-width: 768px) {
+    .process-timeline {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        overflow-x: hidden; /* Prevent horizontal overflow */
+        width: 100%; /* Ensure full width */
+    }
+    
+    .process-timeline::before {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    
+    .process-timeline .project-bar {
+        width: 90%; /* Slightly wider for better visibility */
+        max-width: 400px; /* Limit maximum width */
+        margin-left: auto !important;
+        margin-right: auto !important;
+        align-self: center !important;
+        position: relative;
+        left: 0 !important;
+        right: 0 !important;
+        transform: none; /* Remove scale down to prevent overflow */
+    }
+    
+    .process-timeline .project-bar.align-right {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        align-self: center !important;
+    }
+    
+    /* Adjust project info for better mobile display */
+    .process-timeline .project-info {
+        padding: 1rem;
+        text-align: center;
+    }
+    
+    .process-timeline .project-info h4 {
+        font-size: 1.2rem; /* Make heading visible */
+    }
+    
+    .process-timeline .project-bar::before {
+        width: 30px;
+        display: none; /* Hide connectors on mobile for cleaner look */
+    }
+    
+    .process-timeline .project-bar:nth-child(odd)::before {
+        right: -30px;
+    }
+    
+    .process-timeline .project-bar:nth-child(even)::before {
+        left: -30px;
+    }
+    
+    .process-timeline .project-bar:hover::before {
+        width: 30px; /* Keep the same width on hover for mobile */
+    }
+    
+    /* Reduce gap between projects on mobile */
+    .process-timeline {
+        gap: 2.5rem;
+    }
+    
+    /* Ensure images don't overflow */
+    .process-timeline .project-banner {
+        height: 250px; /* Slightly shorter for mobile */
+    }
+
+    /* Process stage mobile styling */
+    .process-stage {
+        text-align: center;
+        padding-left: 0;
+        position: relative;
+        margin: 0 auto;
+        max-width: 300px;
+        width: 90%;
+        height: auto;
+        margin-bottom: 1rem;
+        top: 0;
+        transform: translateX(0);
+        z-index: 10;
+    }
+    
+    /* Reset any special positioning classes in mobile view */
+    .process-stage.align-left,
+    .process-stage.align-right {
+        margin-left: auto;
+        margin-right: auto;
+        transform: translateX(0) !important;
+        top: 0;
+        max-width: 300px;
+        width: 90%;
+    }
+    
+    /* Hide paragraph text in process stages on mobile, only show h3 */
+    .process-stage p {
+        display: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .process-timeline {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        align-items: center; /* Center align all items in the timeline */
+    }
+    
+    /* Hide paragraph text in process stages on mobile, only show h3 */
+    .process-stage p {
+        display: none;
+    }
+    
+    .process-timeline .project-bar {
+        width: 90%;
+        max-width: 400px; /* Limit width but maintain horizontal rectangle shape */
+        transform: scale(0.95); /* Slightly reduce scale instead of stretching */
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    /* Keep left and right cards consistent in mobile view */
+    .process-timeline .project-bar:nth-child(odd),
+    .process-timeline .project-bar:nth-child(even),
+    .process-timeline .project-bar.align-right {
+        width: 90%;
+        max-width: 400px;
+        align-self: center; /* Center align all cards */
+        transform: translateX(0) !important; /* Reset any transform */
+        margin: 0 auto; /* Center horizontally */
+    }
+    
+    .process-timeline .project-banner {
+        height: 200px; /* Reduce height to maintain horizontal rectangle shape */
+    }
+    
+    .process-timeline .project-info {
+        padding: 0.8rem;
+    }
+    
+    .process-timeline .project-info h4 {
+        font-size: 1.1rem;
+    }
+    
+    .process-timeline .project-info p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+    
+    /* Reduce size of process stage labels */
+    .process-stage {
+        max-width: 280px;
+        width: 90%;
+        padding: 0.5rem 1rem;
+        margin: 0 auto 1.5rem;
+        height: auto;
+        position: relative;
+        z-index: 10;
+    }
+    
+    /* Center all process stages on mobile */
+    .process-stage,
+    .process-stage.align-left,
+    .process-stage.align-right {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        transform: translateX(0) !important;
+        top: 0;
+    }
+    
+    .process-timeline:nth-of-type(odd) + .process-stage,
+    .process-stage:nth-of-type(odd),
+    .process-timeline:nth-of-type(even) + .process-stage,
+    .process-stage:nth-of-type(even) {
+        margin-left: auto;
+        margin-right: auto;
+    }
+    
+    .process-stage h3 {
+        font-size: 1.3rem;
+    }
+    
+    /* Adjust spacing between cards */
+    .process-timeline {
+        gap: 2rem;
+    }
+}

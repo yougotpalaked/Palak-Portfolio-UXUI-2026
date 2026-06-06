@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Font Preview — Avalokana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Lato:wght@400;700&family=Manrope:wght@400;500;600;700;800&family=Figtree:wght@400;500;600;700;800&family=Epilogue:wght@500;600;700;800&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: linear-gradient(135deg, #FFF0E8 0%, #F0EDFB 48%, #E8F7F0 100%);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 32px;
+    min-height: 100vh;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .label-strip {
+    width: 100%;
+    text-align: center;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 13px;
+    color: #9CA3AF;
+    margin-bottom: -8px;
+    letter-spacing: 0.05em;
+  }
+
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    width: 310px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    border: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .option-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Hanken Grotesk', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    color: #768DFF;
+    text-transform: uppercase;
+    background: #EEF0FF;
+    padding: 3px 8px;
+    border-radius: 20px;
+    width: fit-content;
+  }
+
+  .divider { height: 1px; background: #F3F4F6; margin: 0 -24px; }
+
+  .stats-row { display: flex; gap: 10px; }
+  .stat-box {
+    flex: 1;
+    background: #F9FAFB;
+    border-radius: 10px;
+    padding: 10px 12px;
+    border: 1px solid #F3F4F6;
+  }
+  .nav-row { display: flex; flex-direction: column; gap: 4px; }
+  .nav-item { display: flex; align-items: center; gap: 8px; padding: 7px 9px; border-radius: 9px; }
+  .nav-item.active { background: #F0EDFB; }
+  .nav-dot { width: 5px; height: 5px; border-radius: 50%; background: #768DFF; flex-shrink: 0; }
+  .nav-dot.grey { background: #D1D5DB; }
+  .table-row { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; border-bottom: 1px solid #F3F4F6; }
+  .badge-pill { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 20px; font-size: 11px; }
+  .badge-red { background: #FEE2E2; color: #EF4444; }
+  .badge-green { background: #DCFCE7; color: #22C55E; }
+  .badge-amber { background: #FEF3C7; color: #F59E0B; }
+  .badge-blue { background: #EEF2FF; color: #768DFF; }
+  .mono-id { background: #F3F4F6; padding: 2px 6px; border-radius: 5px; font-size: 11px; }
+
+  /* ── A: Hanken Grotesk + Lato ── */
+  .a .font-name { font-family: 'Hanken Grotesk', sans-serif; font-size: 17px; font-weight: 800; color: #111827; }
+  .a .font-sub  { font-family: 'Lato', sans-serif; font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+  .a .section-label { font-family: 'Hanken Grotesk', sans-serif; font-size: 11px; font-weight: 700; color: #768DFF; letter-spacing: 0.1em; text-transform: uppercase; }
+  .a .heading { font-family: 'Hanken Grotesk', sans-serif; font-size: 17px; font-weight: 700; color: #111827; margin-top: 3px; }
+  .a .body { font-family: 'Lato', sans-serif; font-size: 13px; color: #6B7280; line-height: 1.55; margin-top: 5px; }
+  .a .stat-label { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.09em; }
+  .a .stat-num { font-family: 'Hanken Grotesk', sans-serif; font-size: 20px; font-weight: 800; color: #111827; }
+  .a .stat-pct { font-family: 'Lato', sans-serif; font-size: 11px; font-weight: 700; margin-left: 3px; }
+  .a .nav { font-family: 'Lato', sans-serif; font-size: 13px; color: #374151; }
+  .a .nav.active { color: #768DFF; font-weight: 700; }
+  .a .table-head { font-family: 'Lato', sans-serif; font-size: 10px; font-weight: 700; color: #9CA3AF; letter-spacing: 0.09em; text-transform: uppercase; }
+  .a .table-cell { font-family: 'Lato', sans-serif; font-size: 12px; color: #374151; }
+  .a .badge { font-family: 'Lato', sans-serif; font-weight: 700; }
+  .a .mono-id { font-family: 'JetBrains Mono', monospace; }
+
+  /* ── B: Manrope ── */
+  .b .font-name { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 800; color: #111827; }
+  .b .font-sub  { font-family: 'Manrope', sans-serif; font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+  .b .section-label { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; color: #768DFF; letter-spacing: 0.1em; text-transform: uppercase; }
+  .b .heading { font-family: 'Manrope', sans-serif; font-size: 17px; font-weight: 700; color: #111827; margin-top: 3px; }
+  .b .body { font-family: 'Manrope', sans-serif; font-size: 13px; color: #6B7280; line-height: 1.55; margin-top: 5px; font-weight: 400; }
+  .b .stat-label { font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.09em; }
+  .b .stat-num { font-family: 'Manrope', sans-serif; font-size: 20px; font-weight: 800; color: #111827; }
+  .b .stat-pct { font-family: 'Manrope', sans-serif; font-size: 11px; font-weight: 700; margin-left: 3px; }
+  .b .nav { font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 500; color: #374151; }
+  .b .nav.active { color: #768DFF; font-weight: 700; }
+  .b .table-head { font-family: 'Manrope', sans-serif; font-size: 10px; font-weight: 700; color: #9CA3AF; letter-spacing: 0.09em; text-transform: uppercase; }
+  .b .table-cell { font-family: 'Manrope', sans-serif; font-size: 12px; color: #374151; }
+  .b .badge { font-family: 'Manrope', sans-serif; font-weight: 700; }
+  .b .mono-id { font-family: 'JetBrains Mono', monospace; }
+
+  /* ── C: Figtree ── */
+  .c .font-name { font-family: 'Figtree', sans-serif; font-size: 17px; font-weight: 800; color: #111827; }
+  .c .font-sub  { font-family: 'Figtree', sans-serif; font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+  .c .section-label { font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 700; color: #768DFF; letter-spacing: 0.1em; text-transform: uppercase; }
+  .c .heading { font-family: 'Figtree', sans-serif; font-size: 17px; font-weight: 700; color: #111827; margin-top: 3px; }
+  .c .body { font-family: 'Figtree', sans-serif; font-size: 13px; color: #6B7280; line-height: 1.55; margin-top: 5px; }
+  .c .stat-label { font-family: 'Figtree', sans-serif; font-size: 10px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.09em; }
+  .c .stat-num { font-family: 'Figtree', sans-serif; font-size: 20px; font-weight: 800; color: #111827; }
+  .c .stat-pct { font-family: 'Figtree', sans-serif; font-size: 11px; font-weight: 600; margin-left: 3px; }
+  .c .nav { font-family: 'Figtree', sans-serif; font-size: 13px; font-weight: 500; color: #374151; }
+  .c .nav.active { color: #768DFF; font-weight: 700; }
+  .c .table-head { font-family: 'Figtree', sans-serif; font-size: 10px; font-weight: 600; color: #9CA3AF; letter-spacing: 0.09em; text-transform: uppercase; }
+  .c .table-cell { font-family: 'Figtree', sans-serif; font-size: 12px; color: #374151; }
+  .c .badge { font-family: 'Figtree', sans-serif; font-weight: 700; }
+  .c .mono-id { font-family: 'JetBrains Mono', monospace; }
+
+  /* ── D: Epilogue + Instrument Sans ── */
+  .d .font-name { font-family: 'Epilogue', sans-serif; font-size: 17px; font-weight: 800; color: #111827; }
+  .d .font-sub  { font-family: 'Instrument Sans', sans-serif; font-size: 12px; color: #9CA3AF; margin-top: 2px; }
+  .d .section-label { font-family: 'Epilogue', sans-serif; font-size: 11px; font-weight: 700; color: #768DFF; letter-spacing: 0.1em; text-transform: uppercase; }
+  .d .heading { font-family: 'Epilogue', sans-serif; font-size: 17px; font-weight: 700; color: #111827; margin-top: 3px; }
+  .d .body { font-family: 'Instrument Sans', sans-serif; font-size: 13px; color: #6B7280; line-height: 1.55; margin-top: 5px; }
+  .d .stat-label { font-family: 'Instrument Sans', sans-serif; font-size: 10px; font-weight: 600; color: #9CA3AF; text-transform: uppercase; letter-spacing: 0.09em; }
+  .d .stat-num { font-family: 'Epilogue', sans-serif; font-size: 20px; font-weight: 800; color: #111827; }
+  .d .stat-pct { font-family: 'Instrument Sans', sans-serif; font-size: 11px; font-weight: 600; margin-left: 3px; }
+  .d .nav { font-family: 'Instrument Sans', sans-serif; font-size: 13px; font-weight: 500; color: #374151; }
+  .d .nav.active { color: #768DFF; font-weight: 600; }
+  .d .table-head { font-family: 'Instrument Sans', sans-serif; font-size: 10px; font-weight: 600; color: #9CA3AF; letter-spacing: 0.09em; text-transform: uppercase; }
+  .d .table-cell { font-family: 'Instrument Sans', sans-serif; font-size: 12px; color: #374151; }
+  .d .badge { font-family: 'Instrument Sans', sans-serif; font-weight: 600; }
+  .d .mono-id { font-family: 'JetBrains Mono', monospace; }
+</style>
+</head>
+<body>
+
+<!-- Card builder macro (repeated 4x) -->
+
+<!-- A: Hanken Grotesk + Lato -->
+<div class="card a">
+  <div>
+    <div class="option-tag">A</div>
+    <div class="font-name" style="margin-top:8px">Hanken Grotesk</div>
+    <div class="font-sub">Display · Lato Body · JetBrains Mono</div>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <div class="section-label">Tasks</div>
+    <div class="heading">305 tasks · 10 zones</div>
+    <div class="body">Active maintenance tickets across Nagpur Municipal Corporation. SLA at 3.2%.</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-label">Escalated</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">3,428</div><span class="stat-pct" style="color:#EF4444">4.8%</span>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Resolved</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">14,331</div><span class="stat-pct" style="color:#22C55E">16.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <div class="nav-item active"><div class="nav-dot"></div><div class="nav active">Tasks</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Engineers</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Analytics</div></div>
+  </div>
+  <div>
+    <div class="table-row"><div class="table-head">Manhole ID</div><div class="table-head">Status</div><div class="table-head">SLA</div></div>
+    <div class="table-row"><div class="mono-id">manh_00002</div><div class="badge-pill badge-red badge">On Hold</div><div class="badge-pill badge-amber badge">At Risk</div></div>
+    <div class="table-row"><div class="mono-id">manh_00009</div><div class="badge-pill badge-green badge">Resolved</div><div class="badge-pill badge-green badge">On Track</div></div>
+    <div class="table-row"><div class="mono-id">manh_00014</div><div class="badge-pill badge-blue badge">Verified</div><div class="badge-pill badge-red badge">Breached</div></div>
+  </div>
+</div>
+
+<!-- B: Manrope -->
+<div class="card b">
+  <div>
+    <div class="option-tag">B</div>
+    <div class="font-name" style="margin-top:8px">Manrope</div>
+    <div class="font-sub">Display + Body · JetBrains Mono</div>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <div class="section-label">Tasks</div>
+    <div class="heading">305 tasks · 10 zones</div>
+    <div class="body">Active maintenance tickets across Nagpur Municipal Corporation. SLA at 3.2%.</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-label">Escalated</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">3,428</div><span class="stat-pct" style="color:#EF4444">4.8%</span>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Resolved</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">14,331</div><span class="stat-pct" style="color:#22C55E">16.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <div class="nav-item active"><div class="nav-dot"></div><div class="nav active">Tasks</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Engineers</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Analytics</div></div>
+  </div>
+  <div>
+    <div class="table-row"><div class="table-head">Manhole ID</div><div class="table-head">Status</div><div class="table-head">SLA</div></div>
+    <div class="table-row"><div class="mono-id">manh_00002</div><div class="badge-pill badge-red badge">On Hold</div><div class="badge-pill badge-amber badge">At Risk</div></div>
+    <div class="table-row"><div class="mono-id">manh_00009</div><div class="badge-pill badge-green badge">Resolved</div><div class="badge-pill badge-green badge">On Track</div></div>
+    <div class="table-row"><div class="mono-id">manh_00014</div><div class="badge-pill badge-blue badge">Verified</div><div class="badge-pill badge-red badge">Breached</div></div>
+  </div>
+</div>
+
+<!-- C: Figtree -->
+<div class="card c">
+  <div>
+    <div class="option-tag">C</div>
+    <div class="font-name" style="margin-top:8px">Figtree</div>
+    <div class="font-sub">Display + Body · JetBrains Mono</div>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <div class="section-label">Tasks</div>
+    <div class="heading">305 tasks · 10 zones</div>
+    <div class="body">Active maintenance tickets across Nagpur Municipal Corporation. SLA at 3.2%.</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-label">Escalated</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">3,428</div><span class="stat-pct" style="color:#EF4444">4.8%</span>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Resolved</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">14,331</div><span class="stat-pct" style="color:#22C55E">16.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <div class="nav-item active"><div class="nav-dot"></div><div class="nav active">Tasks</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Engineers</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Analytics</div></div>
+  </div>
+  <div>
+    <div class="table-row"><div class="table-head">Manhole ID</div><div class="table-head">Status</div><div class="table-head">SLA</div></div>
+    <div class="table-row"><div class="mono-id">manh_00002</div><div class="badge-pill badge-red badge">On Hold</div><div class="badge-pill badge-amber badge">At Risk</div></div>
+    <div class="table-row"><div class="mono-id">manh_00009</div><div class="badge-pill badge-green badge">Resolved</div><div class="badge-pill badge-green badge">On Track</div></div>
+    <div class="table-row"><div class="mono-id">manh_00014</div><div class="badge-pill badge-blue badge">Verified</div><div class="badge-pill badge-red badge">Breached</div></div>
+  </div>
+</div>
+
+<!-- D: Epilogue + Instrument Sans -->
+<div class="card d">
+  <div>
+    <div class="option-tag">D</div>
+    <div class="font-name" style="margin-top:8px">Epilogue</div>
+    <div class="font-sub">Display · Instrument Sans Body · JetBrains Mono</div>
+  </div>
+  <div class="divider"></div>
+  <div>
+    <div class="section-label">Tasks</div>
+    <div class="heading">305 tasks · 10 zones</div>
+    <div class="body">Active maintenance tickets across Nagpur Municipal Corporation. SLA at 3.2%.</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat-box">
+      <div class="stat-label">Escalated</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">3,428</div><span class="stat-pct" style="color:#EF4444">4.8%</span>
+      </div>
+    </div>
+    <div class="stat-box">
+      <div class="stat-label">Resolved</div>
+      <div style="display:flex;align-items:baseline;margin-top:3px">
+        <div class="stat-num">14,331</div><span class="stat-pct" style="color:#22C55E">16.7%</span>
+      </div>
+    </div>
+  </div>
+  <div class="nav-row">
+    <div class="nav-item active"><div class="nav-dot"></div><div class="nav active">Tasks</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Engineers</div></div>
+    <div class="nav-item"><div class="nav-dot grey"></div><div class="nav">Analytics</div></div>
+  </div>
+  <div>
+    <div class="table-row"><div class="table-head">Manhole ID</div><div class="table-head">Status</div><div class="table-head">SLA</div></div>
+    <div class="table-row"><div class="mono-id">manh_00002</div><div class="badge-pill badge-red badge">On Hold</div><div class="badge-pill badge-amber badge">At Risk</div></div>
+    <div class="table-row"><div class="mono-id">manh_00009</div><div class="badge-pill badge-green badge">Resolved</div><div class="badge-pill badge-green badge">On Track</div></div>
+    <div class="table-row"><div class="mono-id">manh_00014</div><div class="badge-pill badge-blue badge">Verified</div><div class="badge-pill badge-red badge">Breached</div></div>
+  </div>
+</div>
+
+</body>
+</html>

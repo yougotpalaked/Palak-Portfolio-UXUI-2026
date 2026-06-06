@@ -1,0 +1,88 @@
+/* 
+ * scroll-animation.css
+ * Animations for scroll icon and mobile-specific adjustments
+ */
+
+/* Scroll Icon Styles */
+.scroll-icon {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    cursor: pointer;
+    animation: breathe 4s ease-in-out infinite;
+}
+
+.scroll-icon i {
+    font-size: 24px;
+    color: var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+body.dark-mode .scroll-icon i {
+    color: var(--dark-primary);
+}
+
+/* Breathing Animation for Scroll Icon */
+@keyframes breathe {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.9;
+    }
+    50% {
+        transform: scale(1.15);
+        opacity: 1;
+    }
+}
+
+/* Pulse Animation for Scroll Icon */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.1);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Apply pulse animation on hover */
+.scroll-icon:hover i {
+    animation: pulse 1.5s infinite;
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 768px) {
+    /* Move scroll icon below paragraph in mobile view */
+    .hero-content + div {
+        order: 3; /* Position after hero content */
+        margin-top: 15px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    /* Increase eye size in mobile view */
+    .hero .eye-container .eye-wrapper {
+        width: 120px !important; /* Increased from 100px */
+        height: 120px !important; /* Increased from 100px */
+        min-width: 120px !important; /* Increased from 90px */
+        min-height: 120px !important; /* Increased from 90px */
+    }
+    
+    /* Hide paragraph text in process stages for mobile view */
+    .process-stage p {
+        display: none;
+    }
+    
+    /* Ensure h3 headings remain visible */
+    .process-stage h3 {
+        margin-bottom: 0;
+        font-size: 1.4rem;
+    }
+}

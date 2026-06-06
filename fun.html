@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fun Projects | Palak Agrawal</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300&display=swap">
+  <link rel="stylesheet" href="css/palak-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+  <style>
+    .fun-page {
+      max-width: 1100px; margin: 0 auto;
+      padding: calc(var(--nav) + 48px) 24px 60px;
+    }
+
+    .fun-header {
+      margin-bottom: 48px;
+    }
+
+    .fun-header h1 {
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 700;
+      color: #111;
+      line-height: 1.1;
+    }
+
+    .fun-header p {
+      margin-top: 10px;
+      font-size: 15px;
+      color: #888;
+      line-height: 1.6;
+      white-space: nowrap;
+    }
+
+    .fun-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .fun-card {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      display: block;
+      transition: transform .25s;
+      text-decoration: none;
+      color: inherit;
+      cursor: pointer;
+      aspect-ratio: 16 / 9;
+      background: #1a1a1a;
+    }
+
+    .fun-card:hover { transform: translateY(-4px); }
+
+    .fun-card-thumb {
+      position: absolute; inset: 0;
+      overflow: hidden;
+    }
+
+    .fun-card-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover; display: block;
+      transition: filter .3s ease, transform .3s ease;
+    }
+
+    .fun-card:hover .fun-card-thumb img {
+      filter: blur(6px) brightness(0.6);
+      transform: scale(1.03);
+    }
+
+    .fun-card-placeholder {
+      width: 100%; height: 100%;
+      background: #1a1a1a;
+    }
+
+    .fun-card-badge {
+      position: absolute;
+      top: 14px; left: 14px;
+      background: rgba(110,231,160,0.18);
+      border: 1px solid rgba(110,231,160,0.35);
+      color: #6ee7a0;
+      font-size: 10px; font-weight: 600;
+      letter-spacing: .1em; text-transform: uppercase;
+      padding: 4px 10px; border-radius: 999px;
+    }
+
+    .fun-card-body {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 48px 22px 20px;
+      background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity .3s ease, transform .3s ease;
+    }
+
+    .fun-card:hover .fun-card-body {
+      opacity: 1; transform: translateY(0);
+    }
+
+    .fun-card-name {
+      font-size: 18px; font-weight: 700;
+      color: #f0f0f0; line-height: 1.2;
+    }
+
+    .fun-card-coming {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 12px; font-weight: 500;
+      color: #333; letter-spacing: .08em; text-transform: uppercase;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="topnav">
+    <a class="topnav-logo" href="index.html">Palak Agrawal</a>
+    <ul class="topnav-pills">
+      <li><a href="index.html">Dashboard</a></li>
+      <li><a href="works.html">Projects</a></li>
+      <li><a href="fun.html" class="active">Fun</a></li>
+      <li><a href="about.html">About</a></li>
+    </ul>
+    <div class="topnav-right">
+      <a href="resume/Palak-Resume-UXUI.pdf" target="_blank" title="Resume"><i class="fas fa-file-alt"></i></a>
+      <a href="https://www.linkedin.com/in/palak-agrawal-aaa227206/" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    </div>
+  </nav>
+
+  <div class="fun-page">
+    <div class="fun-header">
+      <h1>Fun Projects</h1>
+      <p>Side experiments, browser toys, and things built just because they seemed like a good idea.</p>
+    </div>
+
+    <div class="fun-grid">
+
+      <!-- FOCUSREAD -->
+      <a href="focus-read.html" class="fun-card">
+        <div class="fun-card-thumb">
+          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+        </div>
+        <div class="fun-card-body">
+          <div class="fun-card-name">FocusRead</div>
+        </div>
+      </a>
+
+      <!-- PLACEHOLDER 1 -->
+      <a href="focus-read.html" class="fun-card">
+        <div class="fun-card-thumb">
+          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+        </div>
+        <div class="fun-card-body">
+          <div class="fun-card-name">FocusRead</div>
+        </div>
+      </a>
+
+      <!-- PLACEHOLDER 2 -->
+      <a href="focus-read.html" class="fun-card">
+        <div class="fun-card-thumb">
+          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+        </div>
+        <div class="fun-card-body">
+          <div class="fun-card-name">FocusRead</div>
+        </div>
+      </a>
+
+      <!-- PLACEHOLDER 3 -->
+      <a href="focus-read.html" class="fun-card">
+        <div class="fun-card-thumb">
+          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+        </div>
+        <div class="fun-card-body">
+          <div class="fun-card-name">FocusRead</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <span>© 2026 Palak Agrawal</span>
+    <span>ft. Broken Coding Skills</span>
+  </footer>
+
+</body>
+</html>

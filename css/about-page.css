@@ -1,0 +1,430 @@
+/* 
+ * about-page.css
+ * Styles for the About page with interactive elements
+ * For Palak Agrawal's Portfolio
+ */
+
+/* About Grid Layout */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Animated title for About page */
+.animated-title {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Add responsive grid for mobile */
+@media screen and (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+}
+
+/* About Text Styling */
+.about-text {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+body.dark-mode .about-text {
+    background-color: var(--dark-accent);
+}
+
+.about-text:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.highlight-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+}
+
+body.dark-mode .highlight-text {
+    color: var(--dark-primary);
+}
+
+.highlight-text::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--primary-color);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .highlight-text::after {
+    background-color: var(--dark-primary);
+}
+
+.about-text:hover .highlight-text::after {
+    transform: scaleX(1);
+}
+
+.animated-border {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), transparent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s ease;
+}
+
+body.dark-mode .animated-border {
+    background: linear-gradient(90deg, var(--dark-primary), transparent);
+}
+
+.about-text:hover .animated-border {
+    transform: scaleX(1);
+}
+
+/* Skills Container Styling */
+.skills-container {
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .skills-container {
+    background-color: var(--dark-accent);
+}
+
+.skills-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.skill-bars {
+    margin-top: 1.5rem;
+}
+
+.skill {
+    margin-bottom: 1.2rem;
+}
+
+.skill-name {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.skill-bar {
+    height: 10px;
+    background-color: var(--light-gray);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+body.dark-mode .skill-bar {
+    background-color: var(--dark-light-gray);
+}
+
+.skill-level {
+    height: 100%;
+    background-color: var(--primary-color);
+    border-radius: 5px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1s ease;
+}
+
+body.dark-mode .skill-level {
+    background-color: var(--dark-primary);
+}
+
+.skills-container:hover .skill-level {
+    transform: scaleX(1);
+}
+
+/* Education & Experience Timeline */
+.education-experience {
+    margin-bottom: 3rem;
+}
+
+.timeline-container {
+    position: relative;
+    margin-top: 2rem;
+    padding-left: 2rem;
+}
+
+.timeline-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background-color: var(--primary-color);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1s ease;
+}
+
+body.dark-mode .timeline-container::before {
+    background-color: var(--dark-primary);
+}
+
+.education-experience:hover .timeline-container::before,
+.timeline-container.animate-timeline::before {
+    transform: scaleY(1);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.education-experience:hover .timeline-item,
+.timeline-container.animate-timeline .timeline-item {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-item:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.timeline-item:nth-child(3) {
+    transition-delay: 0.4s;
+}
+
+.timeline-dot {
+    position: absolute;
+    left: -2.5rem;
+    top: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    transform: scale(0);
+    transition: transform 0.3s ease 0.5s;
+}
+
+body.dark-mode .timeline-dot {
+    background-color: var(--dark-primary);
+}
+
+.education-experience:hover .timeline-dot {
+    transform: scale(1);
+}
+
+.timeline-content {
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .timeline-content {
+    background-color: var(--dark-accent);
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-date {
+    font-style: italic;
+    color: var(--dark-gray);
+    margin-bottom: 0.5rem;
+}
+
+body.dark-mode .timeline-date {
+    color: var(--dark-dark-gray);
+}
+
+/* Interests Section */
+.interests-section {
+    margin-bottom: 3rem;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.interest-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-radius: 8px;
+    background-color: var(--accent-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+body.dark-mode .interest-card {
+    background-color: var(--dark-accent);
+}
+
+.interest-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.interest-card i {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color);
+    transition: transform 0.3s ease;
+}
+
+body.dark-mode .interest-card i {
+    color: var(--dark-primary);
+}
+
+.interest-card:hover i {
+    transform: scale(1.2);
+}
+
+.interest-card h4 {
+    font-size: 1.1rem;
+    margin-bottom: 0;
+}
+
+/* Personal Story Section */
+.personal-story {
+    max-width: 1200px;
+    margin: 0 auto 3rem;
+    padding: 2rem;
+    background-color: var(--accent-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .personal-story {
+    background-color: var(--dark-accent);
+}
+
+.personal-story:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.personal-story p {
+    margin-bottom: 1.2rem;
+    line-height: 1.8;
+    font-size: 1.05rem;
+}
+
+.personal-story em {
+    font-style: italic;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+body.dark-mode .personal-story em {
+    color: var(--dark-primary);
+}
+
+.personal-story .highlight-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+body.dark-mode .personal-story .highlight-text {
+    color: var(--dark-primary);
+}
+
+/* About Banner */
+.about-banner {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.about-banner img {
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.about-banner img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive Styles */
+@media screen and (max-width: 992px) {
+    .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .personal-story {
+        padding: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .personal-story {
+        padding: 1.25rem;
+    }
+    
+    .personal-story .highlight-text {
+        font-size: 1.2rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .interests-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .personal-story {
+        padding: 1rem;
+    }
+    
+    .personal-story p {
+        font-size: 1rem;
+    }
+}

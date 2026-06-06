@@ -1,0 +1,61 @@
+/* 
+ * typewriter.css
+ * Typewriter animation effect for Palak Agrawal's Portfolio
+ */
+
+/* Typewriter container styling */
+.typewriter-container {
+    display: inline-block;
+    position: relative;
+    text-align: center;
+    width: auto;
+    margin: 0 auto;
+}
+
+/* Typewriter text styling */
+.typewriter-text {
+    display: inline-block;
+    position: relative;
+    color: var(--primary-color);
+    font-weight: 700;
+    text-align: center;
+    white-space: nowrap; /* Prevent text from wrapping */
+}
+
+body.dark-mode .typewriter-text {
+    color: var(--dark-primary);
+}
+
+/* Typewriter cursor styling */
+.typewriter-text::after {
+    content: '|';
+    position: absolute;
+    right: -8px;
+    top: 0;
+    color: var(--primary-color);
+    animation: cursor-blink 1s infinite;
+    height: 100%;
+    line-height: inherit;
+}
+
+body.dark-mode .typewriter-text::after {
+    color: var(--dark-primary);
+}
+
+/* Cursor blinking animation */
+@keyframes cursor-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Typewriter typing animation */
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* Typewriter deleting animation */
+@keyframes deleting {
+    from { width: 100%; }
+    to { width: 0; }
+}
