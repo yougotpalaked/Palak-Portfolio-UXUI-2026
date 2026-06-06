@@ -13,7 +13,7 @@
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   <style>
     .fun-page {
-      max-width: 1100px; margin: 0 auto;
+      max-width: 1380px; margin: 0 auto;
       padding: calc(var(--nav) + 48px) 24px 60px;
     }
 
@@ -38,8 +38,8 @@
 
     .fun-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
+      grid-template-columns: 1fr;
+      gap: 24px;
     }
 
     .fun-card {
@@ -107,11 +107,31 @@
       color: #f0f0f0; line-height: 1.2;
     }
 
+    .fun-card-desc {
+      margin-top: 8px;
+      font-size: 13px; color: #c8c8c8;
+      line-height: 1.55; max-width: 640px;
+    }
+
     .fun-card-coming {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
       font-size: 12px; font-weight: 500;
       color: #333; letter-spacing: .08em; text-transform: uppercase;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .fun-page { padding: calc(var(--nav) + 28px) 16px 36px; }
+      .fun-header { margin-bottom: 28px; }
+      .fun-header h1 { font-size: 32px; }
+      .fun-header p { white-space: normal; font-size: 13px; }
+      .fun-grid { gap: 16px; }
+      .fun-card { aspect-ratio: 4/3; }
+      /* Always show description on touch */
+      .fun-card-body { opacity: 1; transform: none; padding: 36px 18px 16px; }
+      .fun-card-name { font-size: 16px; }
+      .fun-card-desc { font-size: 12px; margin-top: 6px; }
     }
   </style>
 </head>
@@ -139,43 +159,36 @@
 
     <div class="fun-grid">
 
-      <!-- FOCUSREAD -->
-      <a href="focus-read.html" class="fun-card">
+      <!-- BROWNIE AUNTY -->
+      <a href="brownie.html" class="fun-card">
         <div class="fun-card-thumb">
-          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+          <img src="zap/brownie-coverpage.png" alt="Brownie Aunty">
         </div>
         <div class="fun-card-body">
-          <div class="fun-card-name">FocusRead</div>
+          <div class="fun-card-name">Brownie Aunty</div>
+          <div class="fun-card-desc">A research-led rebrand for a beloved Ahmedabad brownie shop — from giving it the new name "Brownie Aunty" to building its full visual identity.</div>
         </div>
       </a>
 
-      <!-- PLACEHOLDER 1 -->
-      <a href="focus-read.html" class="fun-card">
+      <!-- ONE WHO RETURNED -->
+      <a href="owr.html" class="fun-card">
         <div class="fun-card-thumb">
-          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+          <img src="zap/OWR-cover.png" alt="One Who Returned">
         </div>
         <div class="fun-card-body">
-          <div class="fun-card-name">FocusRead</div>
+          <div class="fun-card-name">One Who Returned</div>
+          <div class="fun-card-desc">A lookbook for OWR's next collection — concept, storyline, and a gamified catalogue where buyers don't just choose clothes, they choose characters to embody.</div>
         </div>
       </a>
 
-      <!-- PLACEHOLDER 2 -->
-      <a href="focus-read.html" class="fun-card">
+      <!-- CTB -->
+      <a href="ctb.html" class="fun-card">
         <div class="fun-card-thumb">
-          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
+          <img src="midair/CTB_cover.png" alt="CTB">
         </div>
         <div class="fun-card-body">
-          <div class="fun-card-name">FocusRead</div>
-        </div>
-      </a>
-
-      <!-- PLACEHOLDER 3 -->
-      <a href="focus-read.html" class="fun-card">
-        <div class="fun-card-thumb">
-          <img src="focusread/Frame 15.png" alt="FocusRead Extension">
-        </div>
-        <div class="fun-card-body">
-          <div class="fun-card-name">FocusRead</div>
+          <div class="fun-card-name">CTB</div>
+          <div class="fun-card-desc">A side experiment in illustration and narrative — exploring story through hand-drawn form.</div>
         </div>
       </a>
 

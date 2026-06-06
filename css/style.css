@@ -1150,7 +1150,7 @@ body.dark-mode .case-study-image {
 .case-study-image {
     width: 100%;
     min-height: 50px;
-    background-color: var(--light-gray);
+    background-color: transparent;
     border-radius: 8px;
 }
 
