@@ -62,6 +62,22 @@ nav.topnav {
   grid-template-rows: 1.1fr 1.65fr;
   gap: clamp(8px, 0.8vw, 14px);
   box-sizing: border-box;
+  position: relative;
+}
+
+/* Full-viewport gradient backdrop, scoped to the Dashboard page */
+.bento::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  opacity: 1;
+  background: linear-gradient(
+    180deg,
+    #ffffff 0%,
+    #f2f2f2 45%,
+    #d9d9d9 100%
+  );
 }
 
 .card { border-radius: clamp(14px, 1.4vw, 24px); overflow: hidden; min-height: 0; }
@@ -259,6 +275,15 @@ nav.topnav {
 .works-page {
   max-width: 1380px; margin: 0 auto;
   padding: calc(var(--nav) + 28px) 24px 40px;
+}
+
+/* White page background, scoped to the Projects page */
+.works-page::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: #ffffff;
 }
 
 .page-title {
