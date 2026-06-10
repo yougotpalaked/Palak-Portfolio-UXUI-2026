@@ -388,3 +388,59 @@ document.addEventListener('DOMContentLoaded', function () {
     `;
     document.head.appendChild(styleSheet);
 });
+
+/* ── "More Projects" grid on case-study pages ──────────────────────
+   Replaces the single "Next Project" card with a grid of every other
+   project, excluding the one currently open. Single source of truth so
+   all case-study pages stay in sync. */
+(function () {
+    var PROJECTS = [
+        { href: "https://www.wugweb.com/work/the-architecture-of-loyalty-designing-the-axis-bank-savings-account-platform", external: true, img: "ZAPB/axis_cover.png", cat: "Ux research · App development", name: "Axis bank savings account platform", desc: "The goal was to transform the transactional banking relationship into an active loyalty ecosystem that drove customer acquisition, maximized long-term engagement, and streamlined reward redemption." },
+        { href: "zap-business-portal.html", img: "zap/avalokana_cover.png", cat: "Dashboard · Civic Tech", name: "Avalokana Civic Dashboard", desc: "A civic intelligence platform surfacing urban issues for local governance." },
+        { href: "co2.html", img: "midair/CO2cover.png", cat: "Case Study · Product Design", name: "CO2", desc: "A relationship-focused scheduling app that helps couples manage their personal, social, and financial commitments in one shared space." },
+        { href: "zap.html", img: "zap/ZAP_new_cover.png", cat: "App · Interaction", name: "ZAP App", desc: "A mobile app designed for fast, gesture-driven everyday actions." },
+        { href: "zap-design-system.html", img: "ZAPB/design_sysem_banner.png", cat: "Design System · Components", name: "Chitragupta Design System", desc: "The visual language foundation for every CG product — tokens, components, and patterns for 20+ modules." },
+        { href: "chitragupta/", external: true, img: "zap/chitragupta_website_cover.png", cat: "Branding · Web", name: "Chitragupta Brand Website", desc: "Designing a brand identity and web presence for Chitragupta." },
+        { href: "qr-code-auto.html", img: "auto/autoqr2.png", cat: "Research · UX", name: "QR Code in Auto", desc: "A UX research study on effective QR code placement in auto-rickshaws." },
+        { href: "focus-read.html", img: "focusread/Frame 15.png", cat: "Extension · Productivity", name: "FocusRead", desc: "A browser extension designed to enhance reading focus and comprehension." }
+    ];
+
+    function esc(s) {
+        return String(s).replace(/[&<>"]/g, function (c) {
+            return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c];
+        });
+    }
+
+    // Reduce a URL/path to its last segment without .html / trailing slash,
+    // so matching works on both clean-URL servers and GitHub Pages.
+    function slug(u) {
+        u = String(u).split('#')[0].split('?')[0].replace(/\/+$/, '');
+        return (u.split('/').pop() || '').replace(/\.html$/i, '').toLowerCase();
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        var section = document.querySelector('.next-project-section');
+        if (!section) return;
+
+        var current = slug(location.pathname);
+
+        var cards = PROJECTS
+            .filter(function (p) { return slug(p.href) !== current; })
+            .map(function (p) {
+                var target = p.external ? ' target="_blank" rel="noopener noreferrer"' : '';
+                return '<a href="' + p.href + '"' + target + ' class="project-card-big">'
+                    + '<img src="' + p.img + '" alt="' + esc(p.name) + '">'
+                    + '<div class="project-card-footer"><div class="project-card-meta">'
+                    + '<div class="proj-category">' + esc(p.cat) + '</div>'
+                    + '<div class="proj-name">' + esc(p.name) + '</div>'
+                    + '<div class="proj-desc">' + esc(p.desc) + '</div>'
+                    + '</div></div></a>';
+            })
+            .join('');
+
+        section.innerHTML = '<div class="more-projects-wrap">'
+            + '<h2 class="more-projects-title">More Projects</h2>'
+            + '<div class="projects-grid">' + cards + '</div>'
+            + '</div>';
+    });
+})();

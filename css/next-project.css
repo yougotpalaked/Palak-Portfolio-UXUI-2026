@@ -98,8 +98,31 @@
     color: var(--secondary-text-color);
 }
 
+/* "More Projects" grid (replaces the single next-project card) */
+.more-projects-wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    text-align: left;
+}
+
+.more-projects-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0 0 1.75rem;
+    color: var(--primary-text-color, #111);
+}
+
+.more-projects-wrap .projects-grid {
+    gap: 18px;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
+    .more-projects-wrap .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
     .next-project-container {
         flex-direction: column;
     }
