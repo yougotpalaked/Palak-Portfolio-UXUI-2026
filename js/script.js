@@ -397,7 +397,6 @@ document.addEventListener('DOMContentLoaded', function () {
     var PROJECTS = [
         { href: "axis.html", img: "ZAPB/axis_cover.png", cat: "Ux research · App development", name: "Axis bank savings account platform", desc: "The goal was to transform the transactional banking relationship into an active loyalty ecosystem that drove customer acquisition, maximized long-term engagement, and streamlined reward redemption." },
         { href: "zap-business-portal.html", img: "zap/avalokana_cover.png", cat: "Dashboard · Civic Tech", name: "Avalokana Civic Dashboard", desc: "A civic intelligence platform surfacing urban issues for local governance." },
-        { href: "co2.html", img: "midair/CO2cover.png", cat: "Case Study · Product Design", name: "CO2", desc: "A relationship-focused scheduling app that helps couples manage their personal, social, and financial commitments in one shared space." },
         { href: "zap.html", img: "zap/ZAP_new_cover.png", cat: "App · Interaction", name: "ZAP App", desc: "A mobile app designed for fast, gesture-driven everyday actions." },
         { href: "zap-design-system.html", img: "ZAPB/design_sysem_banner.png", cat: "Design System · Components", name: "Chitragupta Design System", desc: "The visual language foundation for every CG product: tokens, components, and patterns for 20+ modules." },
         { href: "chitragupta/", external: true, img: "zap/chitragupta_website_cover.png", cat: "Branding · Web", name: "Chitragupta Brand Website", desc: "Designing a brand identity and web presence for Chitragupta." },
