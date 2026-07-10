@@ -418,10 +418,25 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     document.addEventListener('DOMContentLoaded', function () {
+        var current = slug(location.pathname);
+
+        // ── Floating pill: on a case study, swap "Projects" for "Next Case Study" ──
+        // Cycles through the internal (non-external) projects in order, wrapping
+        // back to the first after the last.
+        var internal = PROJECTS.filter(function (p) { return !p.external; });
+        var idx = internal.findIndex(function (p) { return slug(p.href) === current; });
+        if (idx !== -1) {
+            var next = internal[(idx + 1) % internal.length];
+            document.querySelectorAll('.topnav-pills li a').forEach(function (a) {
+                if (slug(a.getAttribute('href')) === 'works') {
+                    a.textContent = 'Next Case Study';
+                    a.setAttribute('href', next.href);
+                }
+            });
+        }
+
         var section = document.querySelector('.next-project-section');
         if (!section) return;
-
-        var current = slug(location.pathname);
 
         var cards = PROJECTS
             .filter(function (p) { return slug(p.href) !== current; })

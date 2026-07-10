@@ -16,6 +16,7 @@
 
   <nav class="topnav">
     <a class="topnav-logo" href="index.html">Palak Agrawal</a>
+
     <ul class="topnav-pills">
       <li><a href="index.html" class="active">Dashboard</a></li>
       <li><a href="works.html">Projects</a></li>
@@ -99,7 +100,7 @@
     </div>
 
     <!-- PROJECTS MINI GRID CARD -->
-    <div class="card card-projects">
+    <div class="card card-projects" data-card-link="works.html">
       <div class="projects-head">
         <div class="card-label"><i class="fas fa-th"></i>&nbsp; Suggested For You</div>
         <a href="works.html" class="btn-pill">View All →</a>
@@ -123,7 +124,7 @@
     </div>
 
     <!-- ABOUT / CONTACT CARD -->
-    <div class="card card-about">
+    <div class="card card-about" data-card-link="about.html">
       <div>
         <div class="card-label" style="margin-bottom:14px;"><i class="fas fa-seedling"></i>&nbsp; About Me</div>
         <div class="about-quote">"and in the middle of it all,<br>I found design."</div>
@@ -162,6 +163,16 @@
 
     window.addEventListener('DOMContentLoaded', () => {
       countUp(document.getElementById('hourCount'), 1500, 2000);
+    });
+
+    // Make cards with data-card-link navigable, without swallowing inner links.
+    document.querySelectorAll('[data-card-link]').forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', e => {
+        // Let real links/buttons inside the card work normally.
+        if (e.target.closest('a, button')) return;
+        window.location.href = card.getAttribute('data-card-link');
+      });
     });
   </script>
 
